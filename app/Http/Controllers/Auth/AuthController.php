@@ -42,8 +42,4 @@ class AuthController extends Controller
     public function logout(){
         return $this->apiSuccess($this->authService->logout(), 'Ok', 200);
     }
-
-    public function getProfile(){
-        return $this->apiSuccess(new OfficerResource(auth()->user()), 'Ok', 200);
-    }
 }

@@ -13,9 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('cafe_revenues', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->foreignId('user_id')->constrained('users');
+            $table->date('date');
+            $table->double('revenue');
+            $table->double('expense');
+            $table->decimal('profit', 8, 2);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('cafe_revenues');
     }
 };

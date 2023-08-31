@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Contract\ICafeRevenueRepository;
 use App\Contract\IProjectRepository;
+use App\Repositories\CafeRevenue\CafeRevenueRepository;
 use App\Repositories\Project\ProjectRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +25,11 @@ class RepositoryServiceProdiver extends ServiceProvider
         $this->app->bind(
             IProjectRepository::class,
             ProjectRepository::class
+        );
+
+        $this->app->bind(
+            ICafeRevenueRepository::class,
+            CafeRevenueRepository::class
         );
     }
 

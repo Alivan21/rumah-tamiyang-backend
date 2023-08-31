@@ -4,7 +4,8 @@ namespace App\Commons\Enums;
 
 enum RoleEnum: string
 {
-    case MAHASISWA = "mahasiswa";
-    case DOSEN = "dosen";
-    case ADMIN = "admin";
+    case USER_CAFE = "USER_CAFE";
+    case USER_WORKSHOP = "USER_WORKSHOP";
+    case USER_WASTE_HOUSE = "USER_WASTE_HOUSE";
+    case ADMIN = "ADMIN";
 }

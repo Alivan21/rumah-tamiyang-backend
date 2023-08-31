@@ -17,12 +17,10 @@ use ApiResponse;
     protected function failedValidation(Validator $validator)
     {
         if ($this->expectsJson()) {
-            $errors = (new ValidationException($validator))->errors();
-            throw new HttpResponseException($this->apiError($errors, 'Validation Error.'));
+            return $this->apiError($validator->errors(), 'Validation Error.', 422);
         }
 
         parent::failedValidation($validator);
-         // throw new \Illuminate\Validation\ValidationException($validator, $this->apiError($validator->errors()->messages(), 'Validation Error.'));
     }
 
     protected function failedAuthorization()

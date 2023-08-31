@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -21,10 +24,11 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @property string $image_profile
  * @property string $role_id
  * @property Role $role
+ * @property Collection|Role[] $roles
 **/
 class User extends Authenticatable implements JWTSubject
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+    use HasApiTokens, HasRoles, HasFactory, Notifiable, SoftDeletes;
 
     /**
      * The attributes that are mass assignable.

@@ -16,14 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Role::insert([
-            ['name' => 'mahasiswa'],
-            ['name' => 'dosen'],
-            ['name' => 'admin'],
-        ]);
-
         $this->call([
+            PermissionSeeder::class,
+            RoleSeeder::class,
             UserSeeder::class,
+            RolePermissionSeeder::class
         ]);
     }
 }
