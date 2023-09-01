@@ -31,7 +31,11 @@ Route::prefix('v1')->group(function () {
 
         Route::group(['prefix' => 'cafe'], function (){
             Route::prefix('revenue')->group(function () {
+                Route::get('/', [CafeRevenueController::class, 'index']);
                 Route::post('/', [CafeRevenueController::class, 'store']);
+                Route::get('/{id}', [CafeRevenueController::class, 'show']);
+                Route::put('/{id}', [CafeRevenueController::class, 'update']);
+                Route::delete('/{id}', [CafeRevenueController::class, 'destroy']);
             });
         });
     });
