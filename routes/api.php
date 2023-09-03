@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WorkshopServiceDescriptionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cafe\CafeRevenueController;
+use App\Http\Controllers\Workshop\WorkshopServiceRevenueController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,6 +38,22 @@ Route::prefix('v1')->group(function () {
                 Route::get('/{id}', [CafeRevenueController::class, 'show']);
                 Route::put('/{id}', [CafeRevenueController::class, 'update']);
                 Route::delete('/{id}', [CafeRevenueController::class, 'destroy']);
+            });
+        });
+
+        Route::group(['prefix' => 'workshop'], function (){
+            Route::prefix('service-revenue')->group(function () {
+                   Route::get('/', [WorkshopServiceRevenueController::class, 'index']);
+                   Route::post('/', [WorkshopServiceRevenueController::class, 'store']);
+                   Route::get('/{id}', [WorkshopServiceRevenueController::class, 'show']);
+                   Route::put('/{id}', [WorkshopServiceRevenueController::class, 'update']);
+                   Route::delete('/{id}', [WorkshopServiceRevenueController::class, 'destroy']);
+            });
+
+            Route::prefix('service-description')->group(function () {
+                Route::post('/', [WorkshopServiceDescriptionController::class, 'store']);
+                Route::put('/{id}', [WorkshopServiceDescriptionController::class, 'update']);
+                Route::delete('/{id}', [WorkshopServiceDescriptionController::class, 'destroy']);
             });
         });
     });
