@@ -1,11 +1,14 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WorkshopServiceDescriptionController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Cafe\CafeRevenueController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Workshop\WorkshopServiceDescriptionController;
 use App\Http\Controllers\Workshop\WorkshopServiceRevenueController;
+use App\Http\Controllers\Workshop\WorkshopSparepartsDescriptionController;
+use App\Http\Controllers\Workshop\WorkshopSparepartRevenueController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -54,6 +57,20 @@ Route::prefix('v1')->group(function () {
                 Route::post('/', [WorkshopServiceDescriptionController::class, 'store']);
                 Route::put('/{id}', [WorkshopServiceDescriptionController::class, 'update']);
                 Route::delete('/{id}', [WorkshopServiceDescriptionController::class, 'destroy']);
+            });
+
+            Route::prefix('sparepart-revenue')->group(function () {
+                Route::get('/', [WorkshopSparepartRevenueController::class, 'index']);
+                Route::post('/', [WorkshopSparepartRevenueController::class, 'store']);
+                Route::get('/{id}', [WorkshopSparepartRevenueController::class, 'show']);
+                Route::put('/{id}', [WorkshopSparepartRevenueController::class, 'update']);
+                Route::delete('/{id}', [WorkshopSparepartRevenueController::class, 'destroy']);
+            });
+
+            Route::prefix('sparepart-description')->group(function () {
+                Route::post('/', [WorkshopSparepartsDescriptionController::class, 'store']);
+                Route::put('/{id}', [WorkshopSparepartsDescriptionController::class, 'update']);
+                Route::delete('/{id}', [WorkshopSparepartsDescriptionController::class, 'destroy']);
             });
         });
     });

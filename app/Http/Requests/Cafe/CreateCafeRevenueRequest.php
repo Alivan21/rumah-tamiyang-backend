@@ -26,7 +26,7 @@ class CreateCafeRevenueRequest extends FormRequest
         return [
             'revenue' => 'required|numeric',
             'expense' => 'required|numeric',
-            'date' => 'required|date'
+            'date' => 'required|date',
         ];
     }
 

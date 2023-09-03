@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Workshop;
 
 use App\Commons\Traits\apiResponse;
+use App\Http\Controllers\Controller;
 use App\Services\Workshop\WorkshopServiceDescriptionService;
 use Illuminate\Http\Request;
 
-class WorkshopServiceDescriptionController extends Controller
+class
+WorkshopServiceDescriptionController extends Controller
 {
     use apiResponse;
 

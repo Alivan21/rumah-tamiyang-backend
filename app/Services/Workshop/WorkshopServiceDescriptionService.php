@@ -2,18 +2,18 @@
 
 namespace App\Services\Workshop;
 
-use App\Contract\Workshop\IWorkshopServiceDescription;
+use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 
 /**
  * class WorkshopServiceDescriptionService
  * @package App\Services\Workshop
- * @property IWorkshopServiceDescription $workshopServiceDescriptionRepository
+ * @property IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository
  */
 class WorkshopServiceDescriptionService
 {
-    private IWorkshopServiceDescription $workshopServiceDescriptionRepository;
+    private IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository;
 
-    public function __construct(IWorkshopServiceDescription $workshopServiceDescriptionRepository)
+    public function __construct(IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository)
     {
         $this->workshopServiceDescriptionRepository = $workshopServiceDescriptionRepository;
     }

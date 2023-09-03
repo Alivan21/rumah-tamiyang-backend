@@ -2,7 +2,7 @@
 
 namespace App\Contract\Workshop;
 
-interface IWorkshopServiceDescription
+interface IWorkshopServiceDescriptionRepository
 {
     public function create(array $data);
     public function update(array $data, $id);

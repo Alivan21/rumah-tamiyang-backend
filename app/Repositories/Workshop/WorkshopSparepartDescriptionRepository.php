@@ -2,17 +2,18 @@
 
 namespace App\Repositories\Workshop;
 
-use App\Models\WorkshopServiceDescription;
+use App\Models\WorkshopSparepartsDescription;
 use Illuminate\Database\Eloquent\Builder;
-
-class WorkshopServiceDescriptionRepository implements \App\Contract\Workshop\IWorkshopServiceDescription
+use App\Contract\Workshop\IWorkshopSparepartDescriptionRepository;
+class WorkshopSparepartDescriptionRepository implements IWorkshopSparepartDescriptionRepository
 {
     private Builder $query;
 
-    public function __construct(WorkshopServiceDescription $model)
+    public function __construct(WorkshopSparepartsDescription $model)
     {
         $this->query = $model->newQuery();
     }
+
     public function create(array $data)
     {
         $createdRecords = [];
@@ -35,6 +36,5 @@ class WorkshopServiceDescriptionRepository implements \App\Contract\Workshop\IWo
     public function delete($id)
     {
         return $this->query->where('id', $id)->delete();
-
     }
 }
