@@ -2,10 +2,11 @@
 
 namespace App\Repositories\Workshop;
 
+use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Models\WorkshopSparepartsDescription;
 use Illuminate\Database\Eloquent\Builder;
-use App\Contract\Workshop\IWorkshopSparepartDescriptionRepository;
-class WorkshopSparepartDescriptionRepository implements IWorkshopSparepartDescriptionRepository
+
+class WorkshopSparepartDescriptionRepositoryRepository implements IWorkshopDescriptionRepository
 {
     private Builder $query;
 

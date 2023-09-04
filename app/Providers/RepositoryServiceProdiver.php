@@ -3,12 +3,10 @@
 namespace App\Providers;
 
 use App\Contract\ICafeRevenueRepository;
-use App\Contract\IWorkshopSparepartRepository;
+use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
-use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
-use App\Contract\Workshop\IWorkshopSparepartDescriptionRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
 use App\Repositories\Workshop\WorkshopExpenseRepository;
@@ -16,7 +14,7 @@ use App\Repositories\Workshop\WorkshopServiceDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopServiceRepository;
 use App\Repositories\Workshop\WorkshopServiceRevenueRepository;
 use App\Repositories\Workshop\WorkshopSpareparRevenueRepository;
-use App\Repositories\Workshop\WorkshopSparepartDescriptionRepository;
+use App\Repositories\Workshop\WorkshopSparepartDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopSparepartRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -83,22 +81,22 @@ class RepositoryServiceProdiver extends ServiceProvider
 
         /**
          * Workshop Service Description
-         * @var IWorkshopServiceDescriptionRepository
+         * @var IWorkshopDescriptionRepository
          * @var WorkshopServiceDescriptionRepositoryRepository
          */
         $this->app->bind(
-            IWorkshopServiceDescriptionRepository::class,
+            IWorkshopDescriptionRepository::class,
             WorkshopServiceDescriptionRepositoryRepository::class
         );
 
         /**
          * Workshop Sparepart Description
-         * @var IWorkshopSparepartDescriptionRepository
+         * @var IWorkshopDescriptionRepository
          * @var WorkshopSparepartDescriptionRepositoryRepository
          */
         $this->app->bind(
-            IWorkshopSparepartDescriptionRepository::class,
-            WorkshopSparepartDescriptionRepository::class
+            IWorkshopDescriptionRepository::class,
+            WorkshopSparepartDescriptionRepositoryRepository::class
         );
 
         /**
