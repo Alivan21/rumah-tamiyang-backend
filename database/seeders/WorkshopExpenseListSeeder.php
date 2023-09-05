@@ -2,7 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Commons\Enums\WorkshopExpenseEnum;
+use App\Models\Workshop\WorkshopExpenseList;
 use Illuminate\Database\Seeder;
 
 class WorkshopExpenseListSeeder extends Seeder
@@ -14,6 +15,18 @@ class WorkshopExpenseListSeeder extends Seeder
      */
     public function run()
     {
-        //
+        $data = [
+            WorkshopExpenseEnum::EQUIPMENT->value,
+            WorkshopExpenseEnum::ELECTRICITY->value,
+            WorkshopExpenseEnum::GAS->value,
+            WorkshopExpenseEnum::WATER->value,
+            WorkshopExpenseEnum::ETC->value,
+        ];
+
+        foreach ($data as $item) {
+            WorkshopExpenseList::query()->firstOrCreate([
+                'name' => $item,
+            ]);
+        }
     }
 }

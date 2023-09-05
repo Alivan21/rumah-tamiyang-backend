@@ -2,7 +2,9 @@
 
 namespace App\Repositories\Workshop;
 
-class WorkshopSparepartRepository implements \App\Contract\IWorkshopSparepartRepository
+use App\Contract\Workshop\IWorkshopSparepartRepository;
+
+class WorkshopSparepartRepository implements IWorkshopSparepartRepository
 {
 
     public function paginate(int $page, int $perPage = 10, array $with = [])

@@ -3,18 +3,19 @@
 namespace App\Repositories\Workshop;
 
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
-use App\Models\Workshop\WorkshopServiceDescription;
+use App\Models\Workshop\WorkshopExpenseDescription;
 use Illuminate\Database\Eloquent\Builder;
 
-class WorkshopServiceDescriptionRepositoryRepository implements IWorkshopDescriptionRepository
+class WorkshopExpenseDescriptionRepository implements IWorkshopDescriptionRepository
 {
     private Builder $query;
 
-    public function __construct(WorkshopServiceDescription $model)
+    public function __construct(WorkshopExpenseDescription $model)
     {
         $this->query = $model->newQuery();
     }
-    public function create(array $data)
+
+    public function create(array $data): array
     {
         $createdRecords = [];
 

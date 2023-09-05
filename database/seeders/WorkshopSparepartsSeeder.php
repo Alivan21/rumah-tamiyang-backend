@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use App\Commons\Enums\WorkshopSparepartsEnum;
-use App\Models\WorkshopSpareparts;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Workshop\WorkshopSpareparts;
 use Illuminate\Database\Seeder;
 
 class WorkshopSparepartsSeeder extends Seeder

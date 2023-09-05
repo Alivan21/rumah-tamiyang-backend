@@ -9,6 +9,7 @@ use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
+use App\Repositories\Workshop\WorkshopExpenseDescriptionRepository;
 use App\Repositories\Workshop\WorkshopExpenseRepository;
 use App\Repositories\Workshop\WorkshopServiceDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopServiceRepository;
@@ -107,6 +108,28 @@ class RepositoryServiceProdiver extends ServiceProvider
         $this->app->bind(
             IWorkshopSparepartRevenueRepository::class,
             WorkshopSpareparRevenueRepository::class
+        );
+
+        /**
+         * Workshop Expense
+         * @var IWorkshopDescriptionRepository
+         * @var WorkshopExpenseRepository
+         */
+        $this->app->bind(
+            IWorkshopDescriptionRepository::class,
+            WorkshopExpenseRepository::class
+        );
+
+
+
+        /**
+         * Workshop Expense Description
+         * @var IWorkshopDescriptionRepository
+         * @var WorkshopExpenseDescriptionRepository
+         */
+        $this->app->bind(
+            IWorkshopDescriptionRepository::class,
+            WorkshopExpenseDescriptionRepository::class
         );
     }
 

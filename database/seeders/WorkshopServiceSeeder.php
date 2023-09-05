@@ -3,9 +3,9 @@
 namespace Database\Seeders;
 
 use App\Commons\Enums\WorkshopServiceEnum;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Workshop\WorkshopService;
 use Illuminate\Database\Seeder;
-use App\Models\WorkshopService;
+
 class WorkshopServiceSeeder extends Seeder
 {
     /**

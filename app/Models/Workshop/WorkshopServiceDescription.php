@@ -1,16 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Workshop;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class WorkshopService extends Model
+class WorkshopServiceDescription extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'workshop_service_id',
+        'workshop_service_revenue_id',
+        'description',
+        'amount'
     ];
 }

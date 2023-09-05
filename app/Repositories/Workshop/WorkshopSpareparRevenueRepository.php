@@ -3,8 +3,9 @@
 namespace App\Repositories\Workshop;
 
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
-use App\Models\WorkshopSparepartsRevenue;
+use App\Models\Workshop\WorkshopSparepartsRevenue;
 use Illuminate\Database\Eloquent\Builder;
+
 class WorkshopSpareparRevenueRepository implements IWorkshopSparepartRevenueRepository
 {
     private Builder $query;

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('workshop_spareparts_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workshop_sparepart_id')
-                ->constrained('workshop_sparepart')
-                ->onDelete('cascade')
-                ->name('workshop_sparepart_id_foreign'); // Specify a shorter name here
             $table->foreignId('workshop_sparepart_revenue_id')
                 ->constrained('workshop_sparepart_revenues')
                 ->onDelete('cascade')
-                ->name('workshop_sparepart_revenue_id_foreign'); // Specify a shorter name here
+                ->name('workshop_sparepart_revenue_id_foreign');
+            $table->foreignId('workshop_sparepart_id')
+                ->constrained('workshop_sparepart')
+                ->onDelete('cascade')
+                ->name('workshop_sparepart_id_foreign');
             $table->integer('amount')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();

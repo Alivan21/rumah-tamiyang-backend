@@ -3,33 +3,41 @@
 namespace App\Repositories\Workshop;
 
 use App\Contract\Workshop\IWorkshopExpenseRepository;
+use App\Models\Workshop\WorkshopExpense;
+use Illuminate\Database\Eloquent\Builder;
 
 class WorkshopExpenseRepository implements IWorkshopExpenseRepository
 {
     private Builder $query;
 
+    public function __construct(WorkshopExpense $model)
+    {
+        $this->query = $model->newQuery();
+    }
+
     public function paginate(int $page, int $perPage = 10, array $with = [])
     {
-        // TODO: Implement paginate() method.
+        return $this->query->with($with)->paginate($perPage, ['*'], 'page', $page);
     }
 
     public function create(array $data)
     {
-        // TODO: Implement create() method.
+        return $this->query->create($data);
     }
 
     public function find(int $id)
     {
-        // TODO: Implement find() method.
+        return $this->query->findOrFail($id);
     }
 
     public function update(array $data, int $id)
     {
-        // TODO: Implement update() method.
+        return $this->query->where('id', $id)->update($data);
     }
 
     public function delete(int $id)
     {
-        // TODO: Implement delete() method.
+        return $this->query->where('id', $id)->delete();
     }
+
 }

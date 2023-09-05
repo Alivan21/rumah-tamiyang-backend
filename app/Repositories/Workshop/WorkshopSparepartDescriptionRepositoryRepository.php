@@ -3,7 +3,7 @@
 namespace App\Repositories\Workshop;
 
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
-use App\Models\WorkshopSparepartsDescription;
+use App\Models\Workshop\WorkshopSparepartsDescription;
 use Illuminate\Database\Eloquent\Builder;
 
 class WorkshopSparepartDescriptionRepositoryRepository implements IWorkshopDescriptionRepository

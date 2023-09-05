@@ -13,16 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('workshop_service_descriptions', function (Blueprint $table) {
+        Schema::create('workshop_expense_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workshop_service_revenue_id')
-                ->constrained('workshop_service_revenues')
+            $table->foreignId('workshop_expenses_id')
+                ->constrained('workshop_expenses')
                 ->onDelete('cascade')
-                ->name('workshop_service_revenue_id_foreign');
-            $table->foreignId('workshop_service_id')
-                ->constrained('workshop_services')
+                ->name('workshop_expenses_id_foreign');
+            $table->foreignId('workshop_expense_lists_id')
+                ->constrained('workshop_expense_lists')
                 ->onDelete('cascade')
-                ->name('workshop_service_id_foreign');
+                ->name('workshop_expense_lists_id_foreign');
             $table->integer('amount')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('workshop_service_descriptions');
+        Schema::dropIfExists('workshop_expense_descriptions');
     }
 };

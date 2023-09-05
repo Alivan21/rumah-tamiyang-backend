@@ -7,6 +7,8 @@ use App\Http\Controllers\Workshop\WorkshopServiceDescriptionController;
 use App\Http\Controllers\Workshop\WorkshopServiceRevenueController;
 use App\Http\Controllers\Workshop\WorkshopSparepartsDescriptionController;
 use App\Http\Controllers\Workshop\WorkshopSparepartRevenueController;
+use App\Http\Controllers\Workshop\WorkshopExpenseController;
+use App\Http\Controllers\Workshop\WorkshopExpenseDescriptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +36,9 @@ Route::prefix('v1')->group(function () {
             Route::get('/', [ProfileController::class, 'index']);
         });
 
+        /**
+         * Cafe Revenue
+         */
         Route::group(['prefix' => 'cafe'], function (){
             Route::prefix('revenue')->group(function () {
                 Route::get('/', [CafeRevenueController::class, 'index']);
@@ -44,7 +49,14 @@ Route::prefix('v1')->group(function () {
             });
         });
 
+        /**
+         * Workshop | Bengkel
+         */
         Route::group(['prefix' => 'workshop'], function (){
+
+            /**
+             * Service Revenue | Pendapatan Jasa
+             */
             Route::prefix('service-revenue')->group(function () {
                    Route::get('/', [WorkshopServiceRevenueController::class, 'index']);
                    Route::post('/', [WorkshopServiceRevenueController::class, 'store']);
@@ -53,12 +65,18 @@ Route::prefix('v1')->group(function () {
                    Route::delete('/{id}', [WorkshopServiceRevenueController::class, 'destroy']);
             });
 
+            /**
+             * Service Description | Keterangan Jasa
+             */
             Route::prefix('service-description')->group(function () {
                 Route::post('/', [WorkshopServiceDescriptionController::class, 'store']);
                 Route::put('/{id}', [WorkshopServiceDescriptionController::class, 'update']);
                 Route::delete('/{id}', [WorkshopServiceDescriptionController::class, 'destroy']);
             });
 
+            /**
+             * Sparepart Revenue | Pendapatan Sparepart
+             */
             Route::prefix('sparepart-revenue')->group(function () {
                 Route::get('/', [WorkshopSparepartRevenueController::class, 'index']);
                 Route::post('/', [WorkshopSparepartRevenueController::class, 'store']);
@@ -67,12 +85,34 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/{id}', [WorkshopSparepartRevenueController::class, 'destroy']);
             });
 
+            /**
+             * Sparepart Description | Keterangan Sparepart
+             */
             Route::prefix('sparepart-description')->group(function () {
                 Route::post('/', [WorkshopSparepartsDescriptionController::class, 'store']);
                 Route::put('/{id}', [WorkshopSparepartsDescriptionController::class, 'update']);
                 Route::delete('/{id}', [WorkshopSparepartsDescriptionController::class, 'destroy']);
             });
+
+            /**
+             * Expense | Pengeluaran
+             */
+            Route::prefix('expense')->group(function () {
+                Route::get('/', [WorkshopExpenseController::class, 'index']);
+                Route::post('/', [WorkshopExpenseController::class, 'store']);
+                Route::get('/{id}', [WorkshopExpenseController::class, 'show']);
+                Route::put('/{id}', [WorkshopExpenseController::class, 'update']);
+                Route::delete('/{id}', [WorkshopExpenseController::class, 'destroy']);
+            });
+
+            /**
+             * Expense Description | Keterangan Pengeluaran
+             */
+            Route::prefix('expense-description')->group(function () {
+                Route::post('/', [WorkshopExpenseDescriptionController::class, 'store']);
+                Route::put('/{id}', [WorkshopExpenseDescriptionController::class, 'update']);
+                Route::delete('/{id}', [WorkshopExpenseDescriptionController::class, 'destroy']);
+            });
         });
     });
-
 });

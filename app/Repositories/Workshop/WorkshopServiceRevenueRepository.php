@@ -2,8 +2,7 @@
 
 namespace App\Repositories\Workshop;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
-use App\Models\WorkshopServiceRevenue;
-use App\Services\Workshop\WorkshopServiceRevenueService;
+use App\Models\Workshop\WorkshopServiceRevenue;
 use Illuminate\Database\Eloquent\Builder;
 
 class WorkshopServiceRevenueRepository implements IWorkshopServiceRevenueRepository
