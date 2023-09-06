@@ -10,7 +10,9 @@ use App\Http\Controllers\Workshop\WorkshopSparepartRevenueController;
 use App\Http\Controllers\Workshop\WorkshopExpenseController;
 use App\Http\Controllers\Workshop\WorkshopExpenseDescriptionController;
 use App\Http\Controllers\WorkshopOilWasteController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Commons\Enums\RoleEnum;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,17 @@ Route::prefix('v1')->group(function () {
     });
 
     Route::middleware(['auth:api'])->group(function () {
+        /**
+         * Admin
+         */
+        Route::group(['prefix' => 'admin', 'middleware' => ['role:'. RoleEnum::ADMIN->value]], function (){
+            Route::get('/', [AdminController::class, 'index']);
+            Route::post('/', [AdminController::class, 'store']);
+            Route::get('/{id}', [AdminController::class, 'show']);
+            Route::put('/{id}', [AdminController::class, 'update']);
+            Route::delete('/{id}', [AdminController::class, 'destroy']);
+        });
+
         Route::group(['prefix' => 'profile'], function (){
             Route::get('/', [ProfileController::class, 'index']);
         });
