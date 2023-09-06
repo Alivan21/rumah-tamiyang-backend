@@ -32,34 +32,38 @@ class UserSeeder extends Seeder
         $userAdmin->assignRole($role_admin);
         $userAdmin->save();
 
-//        $user_cafe = User::insert([
-//            'name' => 'User Cafe',
-//            'identifier' => 'user_cafe',
-//            'email' => 'user_cafe@mail.com',
-//            'password' => Hash::make('password'),
-//            'role_id' => 2
-//        ]);
-//
-//        $user_cafe->assignRole(RoleEnum::USER_CAFE);
-//
-//        $user_workshop = User::insert([
-//            'name' => 'User Workshop',
-//            'identifier' => 'user_workshop',
-//            'email' => 'user_workshop@mail.com',
-//            'password' => Hash::make('password'),
-//            'role_id' => 3
-//        ]);
-//
-//        $user_workshop->assignRole(RoleEnum::USER_WORKSHOP);
-//
-//        $user_waste_house =  User::insert([
-//            'name' => 'User Waste House',
-//            'identifier' => 'user_waste_house',
-//            'email' => 'user_waste_house@mail.com',
-//            'password' => Hash::make('password'),
-//            'role_id' => 4
-//        ]);
-//
-//        $user_waste_house->assignRole(RoleEnum::USER_WASTE_HOUSE);
+        $user_cafe = User::query()->firstOrCreate([
+            'name' => 'User Cafe',
+            'identifier' => 'user_cafe',
+            'email' => 'user_cafe@mail.com',
+            'password' => Hash::make('password'),
+            'role_id' => 2
+        ]);
+
+        $role_cafe = Role::query()->where('name', RoleEnum::USER_CAFE->value)->first();
+        $user_cafe->assignRole($role_cafe);
+        $user_cafe->save();
+
+        $user_workshop = User::query()->firstOrCreate([
+            'name' => 'User Workshop',
+            'identifier' => 'user_workshop',
+            'email' => 'user_workshop@mail.com',
+            'password' => Hash::make('password'),
+            'role_id' => 3
+        ]);
+        $role_workshop = Role::query()->where('name', RoleEnum::USER_WORKSHOP->value)->first();
+        $user_workshop->assignRole($role_workshop);
+        $user_workshop->save();
+
+        $user_waste_house =  User::query()->firstOrCreate([
+            'name' => 'User Waste House',
+            'identifier' => 'user_waste_house',
+            'email' => 'user_waste_house@mail.com',
+            'password' => Hash::make('password'),
+            'role_id' => 4
+        ]);
+        $role_waste_house = Role::query()->where('name', RoleEnum::USER_WASTE_HOUSE->value)->first();
+        $user_waste_house->assignRole($role_waste_house);
+        $user_waste_house->save();
     }
 }

@@ -122,8 +122,6 @@ class RepositoryServiceProdiver extends ServiceProvider
             WorkshopExpenseRepository::class
         );
 
-
-
         /**
          * Workshop Expense Description
          * @var IWorkshopDescriptionRepository
@@ -135,7 +133,7 @@ class RepositoryServiceProdiver extends ServiceProvider
         );
 
         /**
-         * Workshop Oil Waste Description
+         * Workshop Oil Waste
          * @var IWorkshopDescriptionRepository
          * @var WorkshopOilWasteRepository
          */
@@ -143,6 +141,7 @@ class RepositoryServiceProdiver extends ServiceProvider
             IWorkshopOilWasteRepository::class,
             WorkshopOilWasteRepository::class
         );
+
     }
 
     /**
