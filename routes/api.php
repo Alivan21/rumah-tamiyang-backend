@@ -9,6 +9,7 @@ use App\Http\Controllers\Workshop\WorkshopSparepartsDescriptionController;
 use App\Http\Controllers\Workshop\WorkshopSparepartRevenueController;
 use App\Http\Controllers\Workshop\WorkshopExpenseController;
 use App\Http\Controllers\Workshop\WorkshopExpenseDescriptionController;
+use App\Http\Controllers\WorkshopOilWasteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -112,6 +113,15 @@ Route::prefix('v1')->group(function () {
                 Route::post('/', [WorkshopExpenseDescriptionController::class, 'store']);
                 Route::put('/{id}', [WorkshopExpenseDescriptionController::class, 'update']);
                 Route::delete('/{id}', [WorkshopExpenseDescriptionController::class, 'destroy']);
+            });
+
+            /**
+             * Oil Waste | Limbah Oli
+             */
+            Route::prefix('oil-waste')->group(function () {
+                Route::post('/', [WorkshopOilWasteController::class, 'store']);
+                Route::put('/{id}', [WorkshopOilWasteController::class, 'update']);
+                Route::delete('/{id}', [WorkshopOilWasteController::class, 'destroy']);
             });
         });
     });

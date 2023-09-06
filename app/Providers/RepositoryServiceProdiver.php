@@ -5,12 +5,14 @@ namespace App\Providers;
 use App\Contract\ICafeRevenueRepository;
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
+use App\Contract\Workshop\IWorkshopOilWasteRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
 use App\Repositories\Workshop\WorkshopExpenseDescriptionRepository;
 use App\Repositories\Workshop\WorkshopExpenseRepository;
+use App\Repositories\Workshop\WorkshopOilWasteRepository;
 use App\Repositories\Workshop\WorkshopServiceDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopServiceRepository;
 use App\Repositories\Workshop\WorkshopServiceRevenueRepository;
@@ -130,6 +132,16 @@ class RepositoryServiceProdiver extends ServiceProvider
         $this->app->bind(
             IWorkshopDescriptionRepository::class,
             WorkshopExpenseDescriptionRepository::class
+        );
+
+        /**
+         * Workshop Oil Waste Description
+         * @var IWorkshopDescriptionRepository
+         * @var WorkshopOilWasteRepository
+         */
+        $this->app->bind(
+            IWorkshopOilWasteRepository::class,
+            WorkshopOilWasteRepository::class
         );
     }
 
