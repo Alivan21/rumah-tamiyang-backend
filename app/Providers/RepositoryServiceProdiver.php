@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Contract\Admin\IAdminRepository;
 use App\Contract\ICafeRevenueRepository;
+use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
 use App\Contract\Workshop\IWorkshopOilWasteRepository;
@@ -12,6 +13,7 @@ use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
+use App\Repositories\WasteHouse\WasteHouseWasteOilRepository;
 use App\Repositories\Workshop\WorkshopExpenseDescriptionRepository;
 use App\Repositories\Workshop\WorkshopExpenseRepository;
 use App\Repositories\Workshop\WorkshopOilWasteRepository;
@@ -154,6 +156,16 @@ class RepositoryServiceProdiver extends ServiceProvider
             AdminRepository::class
         );
 
+
+        /**
+         * WasteHouse Waste Oil
+         * @var IWasteHouseWasteOilRepository
+         * @var WasteHouseWasteOilRepository
+         */
+        $this->app->bind(
+            IWasteHouseWasteOilRepository::class,
+            WasteHouseWasteOilRepository::class
+        );
     }
 
     /**

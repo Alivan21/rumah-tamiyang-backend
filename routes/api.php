@@ -10,6 +10,7 @@ use App\Http\Controllers\Workshop\WorkshopSparepartRevenueController;
 use App\Http\Controllers\Workshop\WorkshopExpenseController;
 use App\Http\Controllers\Workshop\WorkshopExpenseDescriptionController;
 use App\Http\Controllers\WorkshopOilWasteController;
+use App\Http\Controllers\WasteHouse\WasteHouseWasteOilController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Commons\Enums\RoleEnum;
@@ -136,6 +137,19 @@ Route::prefix('v1')->group(function () {
                 Route::put('/{id}', [WorkshopOilWasteController::class, 'update']);
                 Route::delete('/{id}', [WorkshopOilWasteController::class, 'destroy']);
             });
+        });
+
+        Route::group(['prefix' => 'waste-house'], function (){
+
+            /**
+             * Oil Waste | Limbah Oli Jelantah
+             */
+            Route::prefix('oil-waste')->group(function () {
+                Route::post('/', [WasteHouseWasteOilController::class, 'store']);
+                Route::put('/{id}', [WasteHouseWasteOilController::class, 'update']);
+                Route::delete('/{id}', [WasteHouseWasteOilController::class, 'destroy']);
+            });
+
         });
     });
 });
