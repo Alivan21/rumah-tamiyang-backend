@@ -2,15 +2,16 @@
 
 namespace App\Repositories\WasteHouse;
 
-use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
+use App\Contract\WasteHouse\IWasteHouseProductionRepository;
+use App\Models\WasteHouse\WasteHouseProduction;
 use App\Models\WasteHouse\WasteHouseWasteOil;
 use Illuminate\Database\Eloquent\Builder;
 
-class WasteHouseWasteOilRepository implements IWasteHouseWasteOilRepository
+class WasteHouseProductionRepository implements IWasteHouseProductionRepository
 {
     private Builder $query;
 
-    public function __construct(WasteHouseWasteOil $model)
+    public function __construct(WasteHouseProduction $model)
     {
         $this->query = $model->newQuery();
     }

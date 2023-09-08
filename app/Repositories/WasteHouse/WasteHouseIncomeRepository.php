@@ -1,20 +1,17 @@
 <?php
 
 namespace App\Repositories\WasteHouse;
-
-use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
-use App\Models\WasteHouse\WasteHouseWasteOil;
 use Illuminate\Database\Eloquent\Builder;
-
-class WasteHouseWasteOilRepository implements IWasteHouseWasteOilRepository
+use App\Contract\WasteHouse\IWasteHouseIncomeRepository;
+use App\Models\WasteHouse\WasteHouseIncome;
+class WasteHouseIncomeRepository implements IWasteHouseIncomeRepository
 {
     private Builder $query;
 
-    public function __construct(WasteHouseWasteOil $model)
+    public function __construct(WasteHouseIncome $model)
     {
         $this->query = $model->newQuery();
     }
-
     public function create(array $data)
     {
         return $this->query->create($data);

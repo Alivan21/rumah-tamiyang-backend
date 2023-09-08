@@ -11,6 +11,9 @@ use App\Http\Controllers\Workshop\WorkshopExpenseController;
 use App\Http\Controllers\Workshop\WorkshopExpenseDescriptionController;
 use App\Http\Controllers\WorkshopOilWasteController;
 use App\Http\Controllers\WasteHouse\WasteHouseWasteOilController;
+use App\Http\Controllers\WasteHouse\WasteHouseProductionController;
+use App\Http\Controllers\WasteHouse\WasteHouseIncomeController;
+use App\Http\Controllers\WasteHouse\WasteHouseEnergyBoxController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Commons\Enums\RoleEnum;
@@ -150,6 +153,32 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/{id}', [WasteHouseWasteOilController::class, 'destroy']);
             });
 
+            /**
+             * Production | Produksi
+             */
+            Route::prefix('production')->group(function (){
+                Route::post('/', [WasteHouseProductionController::class, 'store']);
+                Route::put('/{id}', [WasteHouseProductionController::class, 'update']);
+                Route::delete('/{id}', [WasteHouseProductionController::class, 'destroy']);
+            });
+
+            /**
+             * Income | Pendapatan
+             */
+            Route::prefix('income')->group(function (){
+                Route::post('/', [WasteHouseIncomeController::class, 'store']);
+                Route::put('/{id}', [WasteHouseIncomeController::class, 'update']);
+                Route::delete('/{id}', [WasteHouseIncomeController::class, 'destroy']);
+            });
+
+            /**
+             * Energy Box
+             */
+            Route::prefix('energy-box')->group(function () {
+                Route::post('/', [WasteHouseEnergyBoxController::class, 'store']);
+                Route::put('/{id}', [WasteHouseEnergyBoxController::class, 'update']);
+                Route::delete('/{id}', [WasteHouseEnergyBoxController::class, 'destroy']);
+            });
         });
     });
 });
