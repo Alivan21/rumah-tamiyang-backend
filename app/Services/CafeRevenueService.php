@@ -31,6 +31,7 @@ class CafeRevenueService
     public function createCafeRevenue(array $data)
     {
         $data = $this->getArr($data);
+        $data['user_id'] = auth()->user()->id;
 
         return $this->cafeRepository->create($data);
     }
@@ -47,8 +48,8 @@ class CafeRevenueService
 
         // Determine which fields to update based on the provided data
         $updatedData = [
-            'revenue' => $data['revenue'] ?? $existingData['revenue'],
-            'expense' => $data['expense'] ?? $existingData['expense'],
+            'purchase' => $data['purchase'] ?? $existingData['purchase'],
+            'sale' => $data['sale'] ?? $existingData['sale'],
         ];
 
         $dataWithProfit = $this->getArr($updatedData);
@@ -80,8 +81,8 @@ class CafeRevenueService
      */
     private function getArr(array $data): array
     {
-        $revenue = (float)$data['revenue'] ?? 0;
-        $expense = (float)$data['expense'] ?? 0;
+        $revenue = (float)$data['purchase'] ?? 0;
+        $expense = (float)$data['sale'] ?? 0;
 
         if ($revenue > 0) {
             $profitPercentage = (($revenue - $expense) / $revenue) * 100;

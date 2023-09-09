@@ -10,6 +10,8 @@ class WorkshopSparepartsDescription extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'workshop_spareparts_descriptions';
+
     protected $fillable = [
         'workshop_sparepart_id',
         'workshop_sparepart_revenue_id',

@@ -25,6 +25,8 @@ class WorkshopSparepartRevenueService
 
     public function createWorkshopSparepartRevenue(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->workshopSparepartRevenueRepository->create($data);
     }
 

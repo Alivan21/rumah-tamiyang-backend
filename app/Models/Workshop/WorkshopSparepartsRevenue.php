@@ -19,12 +19,4 @@ class WorkshopSparepartsRevenue extends Model
     protected $dates = [
         'date'
     ];
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->user_id = auth()->user()->id;
-        });
-    }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('workshop_spareparts_revenues', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->double('revenue');
             $table->timestamps();
             $table->softDeletes();

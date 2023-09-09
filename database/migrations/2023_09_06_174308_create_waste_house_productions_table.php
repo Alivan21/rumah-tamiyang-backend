@@ -23,7 +23,7 @@ return new class extends Migration
                 ->constrained('users')
                 ->onDelete('cascade')
                 ->name('user_id_foreign');
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->double('amount');
             $table->string('description')->nullable();
             $table->timestamps();

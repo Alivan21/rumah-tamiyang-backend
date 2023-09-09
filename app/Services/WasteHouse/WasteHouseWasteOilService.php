@@ -15,6 +15,8 @@ class WasteHouseWasteOilService
 
     public function createWasteHouseWasteOil(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->wasteHouseWasteOilRepository->create($data);
     }
 

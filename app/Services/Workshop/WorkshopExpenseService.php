@@ -31,6 +31,8 @@ class WorkshopExpenseService
 
     public function createWorkshopExpense(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->workshopExpenseRepository->create($data);
     }
 

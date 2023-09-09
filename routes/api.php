@@ -30,7 +30,6 @@ use App\Commons\Enums\RoleEnum;
 */
 
 
-Route::prefix('v1')->group(function () {
     Route::prefix('auth')->group(function () {
         Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
         // Route::post('register', [AuthController::class, 'register'])->name('register');
@@ -101,7 +100,7 @@ Route::prefix('v1')->group(function () {
                 Route::get('/{id}', [WorkshopSparepartRevenueController::class, 'show']);
                 Route::put('/{id}', [WorkshopSparepartRevenueController::class, 'update']);
                 Route::delete('/{id}', [WorkshopSparepartRevenueController::class, 'destroy']);
-            });
+        });
 
             /**
              * Sparepart Description | Keterangan Sparepart
@@ -180,5 +179,4 @@ Route::prefix('v1')->group(function () {
                 Route::delete('/{id}', [WasteHouseEnergyBoxController::class, 'destroy']);
             });
         });
-    });
 });

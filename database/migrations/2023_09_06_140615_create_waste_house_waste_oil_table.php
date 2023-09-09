@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('waste_house_waste_oil', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->date('date');
+            $table->date('date')->default(now());
             $table->double('amount')->default(0);
             $table->string('origin')->nullable();
             $table->timestamps();

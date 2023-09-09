@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\WasteHouse;
 
 use App\Commons\Enums\WasteHouseListEnum;
 use App\Models\WasteHouse\WasteHouseList;

@@ -10,6 +10,8 @@ class WasteHouseIncome extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'waste_house_incomes';
+
     protected $dates = [
         'date',
     ];
@@ -20,14 +22,5 @@ class WasteHouseIncome extends Model
         'amount',
         'description',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->user_id = auth()->user()->id;
-        });
-    }
 
 }

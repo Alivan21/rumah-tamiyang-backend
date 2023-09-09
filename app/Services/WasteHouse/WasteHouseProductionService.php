@@ -15,6 +15,8 @@ class WasteHouseProductionService
 
     public function createWasteHouseProduction(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->wasteHouseProductionRepository->create($data);
     }
 

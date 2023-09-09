@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Workshop;
 
 use App\Commons\Enums\WorkshopExpenseEnum;
 use App\Models\Workshop\WorkshopExpenseList;

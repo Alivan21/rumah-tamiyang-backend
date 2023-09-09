@@ -19,10 +19,10 @@ return new class extends Migration
                 ->constrained('workshop_expenses')
                 ->onDelete('cascade')
                 ->name('workshop_expenses_id_foreign');
-            $table->foreignId('workshop_expense_lists_id')
-                ->constrained('workshop_expense_lists')
+            $table->foreignId('workshop_expenses_lists_id')
+                ->constrained('workshop_expenses_lists')
                 ->onDelete('cascade')
-                ->name('workshop_expense_lists_id_foreign');
+                ->name('workshop_expenses_lists_id_foreign');
             $table->integer('amount')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();

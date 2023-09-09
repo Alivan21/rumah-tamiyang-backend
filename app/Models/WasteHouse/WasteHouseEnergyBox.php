@@ -10,8 +10,10 @@ class WasteHouseEnergyBox extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $table = 'waste_house_energy_boxes';
+
     protected $fillable = [
-        'waste_house_production_list_id',
+        'waste_house_production_lists_id',
         'date',
         'amount',
         'description',
@@ -20,13 +22,4 @@ class WasteHouseEnergyBox extends Model
     protected $dates = [
         'date',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->user_id = auth()->user()->id;
-        });
-    }
 }

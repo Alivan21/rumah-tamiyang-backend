@@ -33,6 +33,7 @@ class WorkshopServiceRevenueService
 
     public function createWorkshopServiceRevenue(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
         return $this->workshopServiceRevenueRepository->create($data);
     }
 

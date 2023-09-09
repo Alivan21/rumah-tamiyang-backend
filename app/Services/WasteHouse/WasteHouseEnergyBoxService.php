@@ -15,6 +15,8 @@ class WasteHouseEnergyBoxService
 
     public function createWasteHouseEnergyBox(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->wasteHouseEnergyBoxRepository->create($data);
     }
 

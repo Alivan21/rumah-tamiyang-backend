@@ -21,10 +21,11 @@ class CafeRevenue extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable =[
-        'revenue',
+        'purchase',
         'date',
-        'expense',
-        'profit'
+        'sale',
+        'profit',
+        'user_id'
     ];
 
     protected $dates = [
@@ -32,14 +33,14 @@ class CafeRevenue extends Model
     ];
 
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->user_id = auth()->user()->id;
-        });
-    }
+//    public static function boot()
+//    {
+//        parent::boot();
+//
+//        static::creating(function ($query) {
+//            $query->user_id = auth()->user()->id;
+//        });
+//    }
 
 
     public function users()

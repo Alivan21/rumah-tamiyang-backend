@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('cafe_revenues', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users');
-            $table->date('date');
-            $table->double('revenue');
-            $table->double('expense');
-            $table->decimal('profit', 8, 2);
+            $table->date('date')->default(now());
+            $table->double('purchase');
+            $table->double('sale');
+            $table->unsignedDecimal('profit', 8, 2);
             $table->timestamps();
             $table->softDeletes();
         });

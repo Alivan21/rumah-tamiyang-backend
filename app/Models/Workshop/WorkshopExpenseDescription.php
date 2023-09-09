@@ -12,7 +12,7 @@ class WorkshopExpenseDescription extends Model
 
     protected $fillable = [
         'workshop_expenses_id',
-        'workshop_expense_lists_id',
+        'workshop_expenses_lists_id',
         'amount',
         'description'
     ];
