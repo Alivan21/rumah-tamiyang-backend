@@ -4,7 +4,7 @@ namespace App\Http\Requests\Workshop;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateWorkshopServiceRevenueRequest extends FormRequest
+class UpdateWorkshopOilWasteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,23 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
     public function rules()
     {
         return [
-            'revenue' => 'required|numeric',
-            'expense' => 'required|numeric',
-            'date' => 'required|date'
+            'user_id' => 'exists:users,id',
+            'date' => 'date',
+            'oil_collects' => 'integer',
+            'oil_wastes' => 'integer',
         ];
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function messages()
     {
         return [
-            'revenue.required' => 'Revenue is required',
-            'revenue.numeric' => 'Revenue must be a number',
-            'expense.required' => 'Expense is required',
-            'expense.numeric' => 'Expense must be a number',
-            'date.required' => 'Date is required',
-            'date.date' => 'Date must be a date'
+            'user_id.exists' => 'User ID is not exists',
+            'oil_wastes.required' => 'Oil Wastes is required',
+            'oil_wastes.integer' => 'Oil Wastes must be integer',
+            'oil_collects.integer' => 'Oil Collects must be integer',
         ];
     }
 }

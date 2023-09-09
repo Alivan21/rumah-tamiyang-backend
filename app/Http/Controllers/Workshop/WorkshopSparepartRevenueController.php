@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Workshop;
 
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Workshop\CreateWorkshopSparepartRevenueRequest;
+use App\Http\Requests\Workshop\UpdateWorkshopServiceDescriptionRequest;
 use App\Services\Workshop\WorkshopSparepartRevenueService;
 use Illuminate\Http\Request;
 
@@ -32,16 +34,16 @@ class WorkshopSparepartRevenueController extends Controller
         return $this->apiSuccess($workshopSparepartRevenue, 'success');
     }
 
-    public function store(Request $request)
+    public function store(CreateWorkshopSparepartRevenueRequest $request)
     {
-        $workshopSparepartRevenue = $this->workshopSparepartRevenueService->createWorkshopSparepartRevenue($request->all());
+        $workshopSparepartRevenue = $this->workshopSparepartRevenueService->createWorkshopSparepartRevenue($request->validated());
 
         return $this->apiSuccess($workshopSparepartRevenue, 'success');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateWorkshopServiceDescriptionRequest $request, $id)
     {
-        $workshopSparepartRevenue = $this->workshopSparepartRevenueService->updateWorkshopSparepartRevenue($request->all(), $id);
+        $workshopSparepartRevenue = $this->workshopSparepartRevenueService->updateWorkshopSparepartRevenue($request->validated(), $id);
 
         return $this->apiSuccess($workshopSparepartRevenue, 'success');
     }

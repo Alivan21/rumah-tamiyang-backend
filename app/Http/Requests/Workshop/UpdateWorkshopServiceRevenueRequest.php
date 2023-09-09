@@ -4,7 +4,7 @@ namespace App\Http\Requests\Workshop;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateWorkshopServiceRevenueRequest extends FormRequest
+class UpdateWorkshopServiceRevenueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,17 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
     public function rules()
     {
         return [
-            'revenue' => 'required|numeric',
-            'expense' => 'required|numeric',
-            'date' => 'required|date'
+            'revenue' => 'numeric',
+            'expense' => 'numeric',
+            'date' => 'date'
         ];
     }
 
     public function messages()
     {
         return [
-            'revenue.required' => 'Revenue is required',
             'revenue.numeric' => 'Revenue must be a number',
-            'expense.required' => 'Expense is required',
             'expense.numeric' => 'Expense must be a number',
-            'date.required' => 'Date is required',
             'date.date' => 'Date must be a date'
         ];
     }

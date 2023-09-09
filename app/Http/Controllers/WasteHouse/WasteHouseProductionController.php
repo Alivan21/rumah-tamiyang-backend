@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WasteHouse;
 
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WasteHouse\CreateWasteHouseProductionRequest;
+use App\Http\Requests\WasteHouse\UpdateWasteHouseProductionRequest;
 use App\Services\WasteHouse\WasteHouseProductionService;
 use Illuminate\Http\Request;
 
@@ -18,16 +20,16 @@ class WasteHouseProductionController extends Controller
         $this->wasteHouseProductionService = $wasteHouseProductionService;
     }
 
-    public function store(Request $request)
+    public function store(CreateWasteHouseProductionRequest $request)
     {
-        $wasteHouseProduction = $this->wasteHouseProductionService->createWasteHouseProduction($request->all());
+        $wasteHouseProduction = $this->wasteHouseProductionService->createWasteHouseProduction($request->validated());
 
         return $this->apiSuccess($wasteHouseProduction, 'success');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateWasteHouseProductionRequest $request, $id)
     {
-        $wasteHouseProduction = $this->wasteHouseProductionService->updateWasteHouseProduction($request->all(), $id);
+        $wasteHouseProduction = $this->wasteHouseProductionService->updateWasteHouseProduction($request->validated(), $id);
 
         return $this->apiSuccess($wasteHouseProduction, 'success');
     }

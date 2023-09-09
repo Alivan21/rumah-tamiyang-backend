@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Commons\Traits\apiResponse;
+use App\Http\Requests\Workshop\CreateWorkshopOilWasteRequest;
+use App\Http\Requests\Workshop\UpdateWorkshopOilWasteRequest;
 use App\Services\Workshop\WorkshopOilWasteService;
 use Illuminate\Http\Request;
 
@@ -18,17 +20,17 @@ class WorkshopOilWasteController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CreateWorkshopOilWasteRequest $request)
     {
-        $workshopOilWaste = $this->workshopOilWasteService->createWorkshopOilWaste($request->all());
+        $workshopOilWaste = $this->workshopOilWasteService->createWorkshopOilWaste($request->validated());
 
         return $this->apiSuccess($workshopOilWaste, 'success');
     }
 
 
-    public function update(Request $request, $id)
+    public function update(UpdateWorkshopOilWasteRequest $request, $id)
     {
-        $workshopOilWaste = $this->workshopOilWasteService->updateWorkshopOilWaste($request->all(), $id);
+        $workshopOilWaste = $this->workshopOilWasteService->updateWorkshopOilWaste($request->validated(), $id);
 
         return $this->apiSuccess($workshopOilWaste, 'success');
     }

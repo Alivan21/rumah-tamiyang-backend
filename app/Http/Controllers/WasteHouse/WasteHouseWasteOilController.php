@@ -4,6 +4,8 @@ namespace App\Http\Controllers\WasteHouse;
 
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WasteHouse\CreateWasteHouseOilWasteRequest;
+use App\Http\Requests\WasteHouse\UpdateWasteHouseOilWasteRequest;
 use App\Services\WasteHouse\WasteHouseWasteOilService;
 use Illuminate\Http\Request;
 
@@ -19,17 +21,17 @@ class WasteHouseWasteOilController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CreateWasteHouseOilWasteRequest $request)
     {
-        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->createWasteHouseWasteOil($request->all());
+        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->createWasteHouseWasteOil($request->validated());
 
         return $this->apiSuccess($wasteHouseWasteOil, 'success');
     }
 
 
-    public function update(Request $request,$id)
+    public function update(UpdateWasteHouseOilWasteRequest $request,$id)
     {
-        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->updateWasteHouseWasteOil($request->all(), $id);
+        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->updateWasteHouseWasteOil($request->validated(), $id);
 
         return $this->apiSuccess($wasteHouseWasteOil, 'success');
     }

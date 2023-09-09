@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Workshop;
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Workshop\CreateWorkshopServiceRevenueRequest;
+use App\Http\Requests\Workshop\UpdateWorkshopServiceRevenueRequest;
 use App\Services\Workshop\WorkshopServiceRevenueService;
 use App\Services\WorkshopServiceService;
 use Illuminate\Http\Request;
@@ -41,9 +42,9 @@ class WorkshopServiceRevenueController extends Controller
         return $this->apiSuccess($workshopServiceRevenue, 'success');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateWorkshopServiceRevenueRequest $request, $id)
     {
-        $workshopServiceRevenue = $this->workshopServiceRevenueService->updateWorkshopServiceRevenue($request->all(), $id);
+        $workshopServiceRevenue = $this->workshopServiceRevenueService->updateWorkshopServiceRevenue($request->validated(), $id);
 
         return $this->apiSuccess($workshopServiceRevenue, 'success');
     }

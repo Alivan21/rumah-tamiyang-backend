@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Workshop;
 
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Workshop\CreateWorkshopServiceDescriptionRequest;
+use App\Http\Requests\Workshop\UpdateWorkshopServiceDescriptionRequest;
 use App\Services\Workshop\WorkshopServiceDescriptionService;
 use Illuminate\Http\Request;
 
@@ -19,16 +21,16 @@ WorkshopServiceDescriptionController extends Controller
         $this->workshopServiceDescriptionService = $workshopServiceDescriptionService;
     }
 
-    public function store(Request $request)
+    public function store(CreateWorkshopServiceDescriptionRequest $request)
     {
-        $workshopServiceDescription = $this->workshopServiceDescriptionService->createWorkshopServiceDescription($request->all());
+        $workshopServiceDescription = $this->workshopServiceDescriptionService->createWorkshopServiceDescription($request->validated());
 
         return $this->apiSuccess($workshopServiceDescription, 'success');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateWorkshopServiceDescriptionRequest $request, $id)
     {
-        $workshopServiceDescription = $this->workshopServiceDescriptionService->updateWorkshopServiceDescription($request->all(), $id);
+        $workshopServiceDescription = $this->workshopServiceDescriptionService->updateWorkshopServiceDescription($request->validated(), $id);
 
         return $this->apiSuccess($workshopServiceDescription, 'success');
     }

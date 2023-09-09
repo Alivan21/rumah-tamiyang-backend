@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Workshop;
 
 use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Workshop\CreateWorkshopExpenseDescriptionRequest;
+use App\Http\Requests\Workshop\UpdateWorkshopExpenseDescriptionRequest;
 use App\Services\Workshop\WorkshopExpenseDescriptionService;
 use Illuminate\Http\Request;
 
@@ -18,16 +20,16 @@ class WorkshopExpenseDescriptionController extends Controller
         $this->workshopExpenseDescriptionService = $workshopExpenseDescriptionService;
     }
 
-    public function store(Request $request)
+    public function store(CreateWorkshopExpenseDescriptionRequest $request)
     {
-        $workshopExpenseDescription = $this->workshopExpenseDescriptionService->createWorkshopExpenseDescription($request->all());
+        $workshopExpenseDescription = $this->workshopExpenseDescriptionService->createWorkshopExpenseDescription($request->validated());
 
         return $this->apiSuccess($workshopExpenseDescription, 'success');
     }
 
-    public function update(Request $request, $id)
+    public function update(UpdateWorkshopExpenseDescriptionRequest $request, $id)
     {
-        $workshopExpenseDescription = $this->workshopExpenseDescriptionService->updateWorkshopExpenseDescription($request->all(), $id);
+        $workshopExpenseDescription = $this->workshopExpenseDescriptionService->updateWorkshopExpenseDescription($request->validated(), $id);
 
         return $this->apiSuccess($workshopExpenseDescription, 'success');
     }
