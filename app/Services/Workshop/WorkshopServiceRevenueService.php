@@ -2,10 +2,13 @@
 
 namespace App\Services\Workshop;
 
+use App\Contract\Workshop\IWorkshopDescriptionRepository;
+use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
 use Illuminate\Http\Client\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\DB;
 
 /**
  * class WorkshopServiceRevenueService
@@ -15,10 +18,15 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class WorkshopServiceRevenueService
 {
     private IWorkshopServiceRevenueRepository $workshopServiceRevenueRepository;
+    private IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository;
 
-    public function __construct(IWorkshopServiceRevenueRepository $workshopServiceRevenueRepository)
+    public function __construct(
+        IWorkshopServiceRevenueRepository $workshopServiceRevenueRepository,
+        IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository
+    )
     {
         $this->workshopServiceRevenueRepository = $workshopServiceRevenueRepository;
+        $this->workshopServiceDescriptionRepository = $workshopServiceDescriptionRepository;
     }
 
     public function getAllWorkshopServiceRevenue($request, array $with = []): LengthAwarePaginator
@@ -33,8 +41,35 @@ class WorkshopServiceRevenueService
 
     public function createWorkshopServiceRevenue(array $data)
     {
-        $data['user_id'] = auth()->user()->id;
-        return $this->workshopServiceRevenueRepository->create($data);
+        try {
+            DB::beginTransaction();
+            $data['user_id'] = auth()->user()->id;
+
+            $dataRevenue = $this->workshopServiceRevenueRepository->create($data);
+
+            $dataWorkshop = [];
+
+            foreach ($data['data'] as $value) {
+                $dataWorkshop[] = [
+                    'workshop_service_id' => $value['workshop_service_id'],
+                    'workshop_service_revenue_id' => $dataRevenue->id,
+                    'description' => $value['description'] ?? null,
+                    'amount' => $value['amount'] ?? 0
+                ];
+            }
+
+            $this->workshopServiceDescriptionRepository->create($dataWorkshop);
+
+            return $dataRevenue->fresh();
+            DB::commit();
+
+        }catch (\Exception $exception) {
+            DB::rollBack();
+
+            throw $exception;
+        }
+
+
     }
 
     public function updateWorkshopServiceRevenue(array $data, $id)

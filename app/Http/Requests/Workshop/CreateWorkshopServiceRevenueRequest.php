@@ -25,8 +25,10 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
     {
         return [
             'revenue' => 'required|numeric',
-            'expense' => 'required|numeric',
-            'date' => 'required|date'
+            'date' => 'date',
+            'data' => 'required|array',
+            'data.*.workshop_service_id' => 'required|integer',
+            'data.*.amount' => 'required|numeric',
         ];
     }
 
@@ -37,8 +39,13 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
             'revenue.numeric' => 'Revenue must be a number',
             'expense.required' => 'Expense is required',
             'expense.numeric' => 'Expense must be a number',
-            'date.required' => 'Date is required',
-            'date.date' => 'Date must be a date'
+            'date.date' => 'Date must be a date',
+            'data.required' => 'Data is required',
+            'data.array' => 'Data must be an array',
+            'data.*.workshop_service_id.required' => 'Workshop service id is required',
+            'data.*.workshop_service_id.integer' => 'Workshop service id must be an integer',
+            'data.*.amount.required' => 'Amount is required',
+            'data.*.amount.numeric' => 'Amount must be a number',
         ];
     }
 }

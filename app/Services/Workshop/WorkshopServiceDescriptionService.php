@@ -13,7 +13,9 @@ class WorkshopServiceDescriptionService
 {
     private IWorkshopDescriptionRepository $workshopServiceDescriptionRepository;
 
-    public function __construct(IWorkshopDescriptionRepository $workshopServiceDescriptionRepository)
+    public function __construct(
+        IWorkshopDescriptionRepository $workshopServiceDescriptionRepository,
+    )
     {
         $this->workshopServiceDescriptionRepository = $workshopServiceDescriptionRepository;
     }

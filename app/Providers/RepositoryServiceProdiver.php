@@ -11,6 +11,7 @@ use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
 use App\Contract\Workshop\IWorkshopOilWasteRepository;
+use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
@@ -94,11 +95,11 @@ class RepositoryServiceProdiver extends ServiceProvider
 
         /**
          * Workshop Service Description
-         * @var IWorkshopDescriptionRepository
+         * @var IWorkshopServiceDescriptionRepository
          * @var WorkshopServiceDescriptionRepositoryRepository
          */
         $this->app->bind(
-            IWorkshopDescriptionRepository::class,
+            IWorkshopServiceDescriptionRepository::class,
             WorkshopServiceDescriptionRepositoryRepository::class
         );
 
