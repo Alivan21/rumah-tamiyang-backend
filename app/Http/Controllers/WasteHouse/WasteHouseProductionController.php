@@ -20,6 +20,13 @@ class WasteHouseProductionController extends Controller
         $this->wasteHouseProductionService = $wasteHouseProductionService;
     }
 
+    public function index(Request $request)
+    {
+        $wasteHouseProductions = $this->wasteHouseProductionService->paginate($request->page, $request->perPage);
+
+        return $this->apiSuccess($wasteHouseProductions, 'success');
+    }
+
     public function store(CreateWasteHouseProductionRequest $request)
     {
         $wasteHouseProduction = $this->wasteHouseProductionService->createWasteHouseProduction($request->validated());

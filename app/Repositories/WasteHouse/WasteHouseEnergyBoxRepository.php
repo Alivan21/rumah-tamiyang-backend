@@ -14,6 +14,11 @@ class WasteHouseEnergyBoxRepository implements IWasteHouseEnergyBoxRepository
         $this->query = $model->newQuery();
     }
 
+    public function paginate(int $page = 1, int $perPage = 10, array $with = [])
+    {
+        return $this->query->with($with)->paginate($perPage, ['*'], 'page', $page);
+    }
+
     public function create(array $data)
     {
         return $this->query->create($data);

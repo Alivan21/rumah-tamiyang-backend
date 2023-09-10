@@ -13,6 +13,11 @@ class WasteHouseProductionService
         $this->wasteHouseProductionRepository = $wasteHouseProductionRepository;
     }
 
+    public function paginate(int $page, int $perPage = 10, array $with = [])
+    {
+        return $this->wasteHouseProductionRepository->paginate($page, $perPage, $with);
+    }
+
     public function createWasteHouseProduction(array $data)
     {
         $data['user_id'] = auth()->user()->id;

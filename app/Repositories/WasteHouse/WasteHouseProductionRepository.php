@@ -16,6 +16,11 @@ class WasteHouseProductionRepository implements IWasteHouseProductionRepository
         $this->query = $model->newQuery();
     }
 
+    public function paginate(int $page, int $perPage = 10, array $with = [])
+    {
+        return $this->query->with($with)->paginate($perPage, ['*'], 'page', $page);
+    }
+
     public function create(array $data)
     {
         return $this->query->create($data);

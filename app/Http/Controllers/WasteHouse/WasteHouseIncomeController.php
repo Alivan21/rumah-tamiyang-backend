@@ -20,6 +20,13 @@ class WasteHouseIncomeController extends Controller
         $this->wasteHouseIncomeService = $wasteHouseIncomeService;
     }
 
+    public function index(Request $request)
+    {
+        $wasteHouseIncomes = $this->wasteHouseIncomeService->paginate($request->page, $request->perPage);
+
+        return $this->apiSuccess($wasteHouseIncomes, 'success');
+    }
+
     public function store(CreateWasteHouseIncomeRequest $request)
     {
         $wasteHouseIncome = $this->wasteHouseIncomeService->createWasteHouseIncome($request->validated());

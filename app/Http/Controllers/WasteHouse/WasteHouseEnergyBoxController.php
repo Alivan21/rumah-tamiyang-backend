@@ -20,6 +20,17 @@ class WasteHouseEnergyBoxController extends Controller
         $this->wasteHouseEnergyBoxService = $wasteHouseEnergyBoxService;
     }
 
+    public function index(Request $request)
+    {
+        $wasteHouseEnergyBoxes = $this->wasteHouseEnergyBoxService->paginate(
+            $request->get('page', 1),
+            $request->get('per_page', 10),
+            $request->get('with', [])
+        );
+
+        return $this->apiSuccess($wasteHouseEnergyBoxes, 'success');
+    }
+
     public function store(CreateWasteHouseEnergyBoxRequest $request)
     {
         $wasteHouseEnergyBox = $this->wasteHouseEnergyBoxService->createWasteHouseEnergyBox($request->validated());

@@ -157,6 +157,7 @@ use App\Commons\Enums\RoleEnum;
              * Production | Produksi
              */
             Route::prefix('production')->group(function (){
+                Route::get('/', [WasteHouseProductionController::class, 'index']);
                 Route::post('/', [WasteHouseProductionController::class, 'store']);
                 Route::put('/{id}', [WasteHouseProductionController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseProductionController::class, 'destroy']);
@@ -166,6 +167,7 @@ use App\Commons\Enums\RoleEnum;
              * Income | Pendapatan
              */
             Route::prefix('income')->group(function (){
+                Route::get('/', [WasteHouseIncomeController::class, 'index']);
                 Route::post('/', [WasteHouseIncomeController::class, 'store']);
                 Route::put('/{id}', [WasteHouseIncomeController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseIncomeController::class, 'destroy']);
@@ -175,6 +177,7 @@ use App\Commons\Enums\RoleEnum;
              * Energy Box
              */
             Route::prefix('energy-box')->group(function () {
+                Route::get('/', [WasteHouseEnergyBoxController::class, 'index']);
                 Route::post('/', [WasteHouseEnergyBoxController::class, 'store']);
                 Route::put('/{id}', [WasteHouseEnergyBoxController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseEnergyBoxController::class, 'destroy']);
