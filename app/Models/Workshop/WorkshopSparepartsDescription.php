@@ -22,8 +22,8 @@ class WorkshopSparepartsDescription extends Model
     protected $table = 'workshop_spareparts_descriptions';
 
     protected $fillable = [
-        'workshop_sparepart_id',
-        'workshop_sparepart_revenue_id',
+        'workshop_spareparts_id',
+        'workshop_spareparts_revenue_id',
         'description',
         'amount'
     ];

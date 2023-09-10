@@ -3,10 +3,11 @@
 namespace App\Repositories\Workshop;
 
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
+use App\Contract\Workshop\IWorkshopExpenseDescriptionRepository;
 use App\Models\Workshop\WorkshopExpenseDescription;
 use Illuminate\Database\Eloquent\Builder;
 
-class WorkshopExpenseDescriptionRepository implements IWorkshopDescriptionRepository
+class WorkshopExpenseDescriptionRepository implements IWorkshopExpenseDescriptionRepository
 {
     private Builder $query;
 

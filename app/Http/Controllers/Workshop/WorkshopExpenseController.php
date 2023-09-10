@@ -29,9 +29,9 @@ class WorkshopExpenseController extends Controller
         return $this->apiSuccess(new WorkshopExpenseCollection($workshopExpense), 'success');
     }
 
-    public function store(CreateWorkshopExpenseRequest $request)
+    public function store(Request $request)
     {
-        $workshopExpense = $this->workshopExpenseService->createWorkshopExpense($request->validated());
+        $workshopExpense = $this->workshopExpenseService->createWorkshopExpense($request->all());
 
         return $this->apiSuccess($workshopExpense, 'success');
     }

@@ -3,6 +3,7 @@
 namespace App\Services\Admin;
 
 use App\Contract\Admin\IAdminRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class AdminService
 {
@@ -13,7 +14,7 @@ class AdminService
         $this->adminRepository = $adminRepository;
     }
 
-    public function getAllUser(int $page, int $perPage = 10, array $with = [])
+    public function getAllUser(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
     {
         return $this->adminRepository->paginate($page, $perPage, $with);
     }

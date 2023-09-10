@@ -24,9 +24,12 @@ class CreateWorkshopSparepartRevenueRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer',
             'date' => 'required|date',
             'revenue' => 'required|integer',
+            'data' => 'required|array',
+            'data.*.workshop_spareparts_id' => 'required|integer',
+            'data.*.amount' => 'required|integer',
+            'data.*.description' => 'nullable|string',
         ];
     }
 
@@ -42,6 +45,13 @@ class CreateWorkshopSparepartRevenueRequest extends FormRequest
             'date.date' => 'Date must be a date!',
             'revenue.required' => 'Revenue is required!',
             'revenue.integer' => 'Revenue must be an integer!',
+            'data.required' => 'Data is required!',
+            'data.array' => 'Data must be an array!',
+            'data.*.workshop_sparepart_id.required' => 'Workshop sparepart id is required!',
+            'data.*.workshop_sparepart_id.integer' => 'Workshop sparepart id must be an integer!',
+            'data.*.amount.required' => 'Amount is required!',
+            'data.*.amount.integer' => 'Amount must be an integer!',
+            'data.*.description.string' => 'Description must be a string!',
         ];
     }
 }

@@ -38,7 +38,11 @@ class WorkshopSparepartRevenueController extends Controller
 
     public function store(CreateWorkshopSparepartRevenueRequest $request)
     {
-        $workshopSparepartRevenue = $this->workshopSparepartRevenueService->createWorkshopSparepartRevenue($request->validated());
+        try {
+            $workshopSparepartRevenue = $this->workshopSparepartRevenueService->createWorkshopSparepartRevenue($request->validated());
+        } catch (\Exception $e) {
+            return $this->apiError($e->getMessage(), 500);
+        }
 
         return $this->apiSuccess($workshopSparepartRevenue, 'success');
     }

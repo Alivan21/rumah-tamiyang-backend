@@ -29,6 +29,7 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
             'data' => 'required|array',
             'data.*.workshop_service_id' => 'required|integer',
             'data.*.amount' => 'required|numeric',
+            'data.*.description' => 'nullable|string',
         ];
     }
 
@@ -46,6 +47,8 @@ class CreateWorkshopServiceRevenueRequest extends FormRequest
             'data.*.workshop_service_id.integer' => 'Workshop service id must be an integer',
             'data.*.amount.required' => 'Amount is required',
             'data.*.amount.numeric' => 'Amount must be a number',
+            'data.*.description.string' => 'Description must be a string',
+
         ];
     }
 }

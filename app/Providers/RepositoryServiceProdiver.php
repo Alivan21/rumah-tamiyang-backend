@@ -9,11 +9,13 @@ use App\Contract\WasteHouse\IWasteHouseIncomeRepository;
 use App\Contract\WasteHouse\IWasteHouseProductionRepository;
 use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
+use App\Contract\Workshop\IWorkshopExpenseDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
 use App\Contract\Workshop\IWorkshopOilWasteRepository;
 use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
+use App\Contract\Workshop\IWorkshopSparepartDescriptionRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
@@ -28,7 +30,7 @@ use App\Repositories\Workshop\WorkshopServiceDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopServiceRepository;
 use App\Repositories\Workshop\WorkshopServiceRevenueRepository;
 use App\Repositories\Workshop\WorkshopSparepartRevenueRepository;
-use App\Repositories\Workshop\WorkshopSparepartDescriptionRepositoryRepository;
+use App\Repositories\Workshop\WorkshopSparepartDescriptionRepository;
 use App\Repositories\Workshop\WorkshopSparepartRepository;
 use Illuminate\Support\ServiceProvider;
 
@@ -105,12 +107,12 @@ class RepositoryServiceProdiver extends ServiceProvider
 
         /**
          * Workshop Sparepart Description
-         * @var IWorkshopDescriptionRepository
-         * @var WorkshopSparepartDescriptionRepositoryRepository
+         * @var IWorkshopSparepartDescriptionRepository
+         * @var WorkshopSparepartDescriptionRepository
          */
         $this->app->bind(
-            IWorkshopDescriptionRepository::class,
-            WorkshopSparepartDescriptionRepositoryRepository::class
+            IWorkshopSparepartDescriptionRepository::class,
+            WorkshopSparepartDescriptionRepository::class
         );
 
         /**
@@ -135,11 +137,11 @@ class RepositoryServiceProdiver extends ServiceProvider
 
         /**
          * Workshop Expense Description
-         * @var IWorkshopDescriptionRepository
+         * @var IWorkshopExpenseDescriptionRepository
          * @var WorkshopExpenseDescriptionRepository
          */
         $this->app->bind(
-            IWorkshopDescriptionRepository::class,
+            IWorkshopExpenseDescriptionRepository::class,
             WorkshopExpenseDescriptionRepository::class
         );
 

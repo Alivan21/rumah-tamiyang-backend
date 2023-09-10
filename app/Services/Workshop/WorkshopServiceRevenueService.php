@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
  * class WorkshopServiceRevenueService
  * @package App\Services\Workshop
  * @property IWorkshopServiceRepository $workshopServiceRevenueRepository
+ * @property IWorkshopServiceDescriptionRepository $workshopServiceDescriptionRepository
  */
 class WorkshopServiceRevenueService
 {
@@ -60,8 +61,9 @@ class WorkshopServiceRevenueService
 
             $this->workshopServiceDescriptionRepository->create($dataWorkshop);
 
-            return $dataRevenue->fresh();
             DB::commit();
+
+            return $dataRevenue->fresh();
 
         }catch (\Exception $exception) {
             DB::rollBack();

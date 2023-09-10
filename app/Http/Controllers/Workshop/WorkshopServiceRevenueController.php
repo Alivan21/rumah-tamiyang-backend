@@ -9,7 +9,6 @@ use App\Http\Requests\Workshop\UpdateWorkshopServiceRevenueRequest;
 use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueCollection;
 use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueResource;
 use App\Services\Workshop\WorkshopServiceRevenueService;
-use App\Services\WorkshopServiceService;
 use Illuminate\Http\Request;
 
 class WorkshopServiceRevenueController extends Controller
@@ -39,7 +38,13 @@ class WorkshopServiceRevenueController extends Controller
 
     public function store(CreateWorkshopServiceRevenueRequest $request)
     {
-        $workshopServiceRevenue = $this->workshopServiceRevenueService->createWorkshopServiceRevenue($request->validated());
+        try {
+            $workshopServiceRevenue = $this->workshopServiceRevenueService->createWorkshopServiceRevenue($request->validated());
+
+        } catch (\Exception $e) {
+
+            return $this->apiError($e->getMessage(), 500);
+        }
 
         return $this->apiSuccess($workshopServiceRevenue, 'success');
     }
