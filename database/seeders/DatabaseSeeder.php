@@ -8,6 +8,7 @@ use App\Models\Role;
 use Database\Seeders\WasteHouse\WasteHouseEnergyBoxSeeder;
 use Database\Seeders\WasteHouse\WasteHouseIncomeSeeder;
 use Database\Seeders\WasteHouse\WasteHouseListSeeder;
+use Database\Seeders\WasteHouse\WasteHouseOilWasteSeeder;
 use Database\Seeders\WasteHouse\WasteHouseProductionSeeder;
 use Database\Seeders\Workshop\WorkshopExpenseDescriptionSeeder;
 use Database\Seeders\Workshop\WorkshopExpenseListSeeder;
@@ -52,6 +53,7 @@ class DatabaseSeeder extends Seeder
             WasteHouseEnergyBoxSeeder::class,
             WasteHouseProductionSeeder::class,
             WasteHouseIncomeSeeder::class,
+            WasteHouseOilWasteSeeder::class
         ]);
     }
 }

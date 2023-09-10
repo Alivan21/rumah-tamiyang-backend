@@ -25,7 +25,6 @@ class CreateWasteHouseProductionRequest extends FormRequest
     {
         return [
             'waste_house_lists_id' => 'required|integer',
-            'user_id' => 'required|integer',
             'date' => 'required|date',
             'amount' => 'required|integer',
             'description' => 'nullable|string',

@@ -24,7 +24,6 @@ class CreateWasteHouseOilWasteRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|integer|exists:users,id',
             'date' => 'required|date',
             'amount' => 'required|integer',
             'origin' => 'required|string',

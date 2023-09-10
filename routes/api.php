@@ -147,6 +147,7 @@ use App\Commons\Enums\RoleEnum;
              * Oil Waste | Limbah Oli Jelantah
              */
             Route::prefix('oil-waste')->group(function () {
+                Route::get('/', [WasteHouseWasteOilController::class, 'index']);
                 Route::post('/', [WasteHouseWasteOilController::class, 'store']);
                 Route::put('/{id}', [WasteHouseWasteOilController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseWasteOilController::class, 'destroy']);

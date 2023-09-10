@@ -20,6 +20,13 @@ class WasteHouseWasteOilController extends Controller
         $this->wasteHouseWasteOilService = $wasteHouseWasteOilService;
     }
 
+    public function index(Request $request)
+    {
+        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->paginate($request->page, $request->perPage);
+
+        return $this->apiSuccess($wasteHouseWasteOil, 'success');
+    }
+
 
     public function store(CreateWasteHouseOilWasteRequest $request)
     {

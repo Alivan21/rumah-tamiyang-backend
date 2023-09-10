@@ -3,6 +3,7 @@
 namespace App\Services\WasteHouse;
 
 use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class WasteHouseWasteOilService
 {
@@ -11,6 +12,11 @@ class WasteHouseWasteOilService
     public function __construct(IWasteHouseWasteOilRepository $wasteHouseWasteOilRepository)
     {
         $this->wasteHouseWasteOilRepository = $wasteHouseWasteOilRepository;
+    }
+
+    public function paginate(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
+    {
+        return $this->wasteHouseWasteOilRepository->paginate($page, $perPage, $with);
     }
 
     public function createWasteHouseWasteOil(array $data)
