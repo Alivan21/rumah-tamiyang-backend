@@ -26,7 +26,7 @@ use App\Repositories\Workshop\WorkshopOilWasteRepository;
 use App\Repositories\Workshop\WorkshopServiceDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopServiceRepository;
 use App\Repositories\Workshop\WorkshopServiceRevenueRepository;
-use App\Repositories\Workshop\WorkshopSpareparRevenueRepository;
+use App\Repositories\Workshop\WorkshopSparepartRevenueRepository;
 use App\Repositories\Workshop\WorkshopSparepartDescriptionRepositoryRepository;
 use App\Repositories\Workshop\WorkshopSparepartRepository;
 use Illuminate\Support\ServiceProvider;
@@ -115,11 +115,11 @@ class RepositoryServiceProdiver extends ServiceProvider
         /**
          * Workshop Sparepart Revenue
          * @var IWorkshopSparepartRevenueRepository
-         * @var WorkshopSpareparRevenueRepository
+         * @var WorkshopSparepartRevenueRepository
          */
         $this->app->bind(
             IWorkshopSparepartRevenueRepository::class,
-            WorkshopSpareparRevenueRepository::class
+            WorkshopSparepartRevenueRepository::class
         );
 
         /**

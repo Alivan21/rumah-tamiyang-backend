@@ -6,6 +6,8 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Workshop\CreateWorkshopServiceRevenueRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopServiceRevenueRequest;
+use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueCollection;
+use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueResource;
 use App\Services\Workshop\WorkshopServiceRevenueService;
 use App\Services\WorkshopServiceService;
 use Illuminate\Http\Request;
@@ -23,16 +25,16 @@ class WorkshopServiceRevenueController extends Controller
 
     public function index(Request $request)
     {
-        $workshopServiceRevenues = $this->workshopServiceRevenueService->getAllWorkshopServiceRevenue($request->page, $request->perPage);
+        $workshopServiceRevenues = $this->workshopServiceRevenueService->getAllWorkshopServiceRevenue($request, ['users']);
 
-        return $this->apiSuccess($workshopServiceRevenues, 'success');
+        return $this->apiSuccess(new WorkshopServiceRevenueCollection($workshopServiceRevenues), 'success');
     }
 
     public function show($id)
     {
-        $workshopServiceRevenue = $this->workshopServiceRevenueService->getWorkshopServiceRevenueByWorkshopId($id);
+        $workshopServiceRevenue = $this->workshopServiceRevenueService->getWorkshopServiceRevenueByWorkshopId($id,['workshopServiceDescriptions']);
 
-        return $this->apiSuccess($workshopServiceRevenue, 'success');
+        return $this->apiSuccess(new WorkshopServiceRevenueResource($workshopServiceRevenue), 'success');
     }
 
     public function store(CreateWorkshopServiceRevenueRequest $request)

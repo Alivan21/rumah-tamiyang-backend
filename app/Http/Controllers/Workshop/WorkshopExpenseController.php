@@ -6,6 +6,8 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Workshop\CreateWorkshopExpenseRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopExpenseRequest;
+use App\Http\Resources\Workshop\WorkshopExpense\WorkshopExpenseCollection;
+use App\Http\Resources\Workshop\WorkshopExpense\WorkshopExpenseResource;
 use App\Services\Workshop\WorkshopExpenseService;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class WorkshopExpenseController extends Controller
     {
         $workshopExpense = $this->workshopExpenseService->getAllWorkshopExpense($request->page, $request->perPage);
 
-        return $this->apiSuccess($workshopExpense, 'success');
+        return $this->apiSuccess(new WorkshopExpenseCollection($workshopExpense), 'success');
     }
 
     public function store(CreateWorkshopExpenseRequest $request)
@@ -36,9 +38,9 @@ class WorkshopExpenseController extends Controller
 
     public function show($id)
     {
-        $workshopExpense = $this->workshopExpenseService->getWorkshopExpenseById($id);
+        $workshopExpense = $this->workshopExpenseService->getWorkshopExpenseById($id, ['workshopExpenseDescription']);
 
-        return $this->apiSuccess($workshopExpense, 'success');
+        return $this->apiSuccess(new WorkshopExpenseResource($workshopExpense), 'success');
     }
 
     public function update(UpdateWorkshopExpenseRequest $request, $id)

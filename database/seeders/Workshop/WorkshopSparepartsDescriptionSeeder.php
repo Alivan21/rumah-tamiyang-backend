@@ -12,17 +12,17 @@ class WorkshopSparepartsDescriptionSeeder extends Seeder
     public function run(): void
     {
         for ($i = 0; $i < 15; $i++) {
-            $workshop_sparepart_revenue_id = rand(1, 15);
-            $workshop_sparepart_id = rand(1, 4);
+            $workshop_spareparts_revenue_id = rand(1, 15);
+            $workshop_spareparts_id = rand(1, 4);
             $description = '';
-            if ($workshop_sparepart_id == 4)
+            if ($workshop_spareparts_id == 4)
             {
                 $description = 'lorem ipsum dolor sit amet';
             }
 
             WorkshopSparepartsDescription::query()->create([
-                'workshop_sparepart_revenue_id' => $workshop_sparepart_revenue_id, // 'workshop_expenses_id' => rand(1, 15),
-                'workshop_sparepart_id' => $workshop_sparepart_id, // 'workshop_expenses_lists_id' => rand(1, 4),
+                'workshop_spareparts_revenue_id' => $workshop_spareparts_revenue_id,
+                'workshop_spareparts_id' => $workshop_spareparts_id,
                 'amount' => rand(50, 100),
                 'description' => $description,
             ]);

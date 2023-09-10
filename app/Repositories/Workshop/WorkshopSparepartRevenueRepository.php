@@ -6,7 +6,7 @@ use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Models\Workshop\WorkshopSparepartsRevenue;
 use Illuminate\Database\Eloquent\Builder;
 
-class WorkshopSpareparRevenueRepository implements IWorkshopSparepartRevenueRepository
+class WorkshopSparepartRevenueRepository implements IWorkshopSparepartRevenueRepository
 {
     private Builder $query;
 
@@ -25,9 +25,9 @@ class WorkshopSpareparRevenueRepository implements IWorkshopSparepartRevenueRepo
         return $this->query->create($data);
     }
 
-    public function find(int $id)
+    public function find(int $id, array $with = [])
     {
-        return $this->query->findOrFail($id);
+        return $this->query->with($with)->findOrFail($id);
     }
 
     public function update(array $data, int $id)

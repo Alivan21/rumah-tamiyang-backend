@@ -21,14 +21,14 @@ class WorkshopServiceRevenueService
         $this->workshopServiceRevenueRepository = $workshopServiceRevenueRepository;
     }
 
-    public function getAllWorkshopServiceRevenue(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
+    public function getAllWorkshopServiceRevenue($request, array $with = []): LengthAwarePaginator
     {
-        return $this->workshopServiceRevenueRepository->paginate($page, $perPage, $with);
+        return $this->workshopServiceRevenueRepository->paginate($request->page, $request->perPage, $with);
     }
 
-    public function getWorkshopServiceRevenueByWorkshopId($workshopId)
+    public function getWorkshopServiceRevenueByWorkshopId($workshopId, $with = [])
     {
-        return $this->workshopServiceRevenueRepository->find($workshopId);
+        return $this->workshopServiceRevenueRepository->find($workshopId, $with);
     }
 
     public function createWorkshopServiceRevenue(array $data)

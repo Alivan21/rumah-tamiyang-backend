@@ -13,7 +13,7 @@ class WorkshopServiceRevenueRepository implements IWorkshopServiceRevenueReposit
     {
         $this->query = $model->newQuery();
     }
-    public function paginate(int $page, int $perPage = 10, array $with = [])
+    public function paginate(int $page, int $perPage = 10, $with = [])
     {
         return $this->query->with($with)->paginate($perPage, ['*'], 'page', $page);
     }
@@ -23,9 +23,9 @@ class WorkshopServiceRevenueRepository implements IWorkshopServiceRevenueReposit
         return $this->query->create($data);
     }
 
-    public function find(int $id)
+    public function find(int $id, $with = [])
     {
-        return $this->query->findOrFail($id);
+        return $this->query->with($with)->findOrFail($id);
     }
 
     public function update(array $data, int $id)

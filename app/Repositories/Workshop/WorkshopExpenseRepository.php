@@ -25,9 +25,9 @@ class WorkshopExpenseRepository implements IWorkshopExpenseRepository
         return $this->query->create($data);
     }
 
-    public function find(int $id)
+    public function find(int $id, array $with = [])
     {
-        return $this->query->findOrFail($id);
+        return $this->query->with($with)->find($id);
     }
 
     public function update(array $data, int $id)

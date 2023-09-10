@@ -24,9 +24,9 @@ class WorkshopExpenseService
         return $this->workshopExpenseRepository->paginate($page, $perPage, $with);
     }
 
-    public function getWorkshopExpenseById($workshopId)
+    public function getWorkshopExpenseById($workshopId, array $with = [])
     {
-        return $this->workshopExpenseRepository->find($workshopId);
+        return $this->workshopExpenseRepository->find($workshopId, $with);
     }
 
     public function createWorkshopExpense(array $data)

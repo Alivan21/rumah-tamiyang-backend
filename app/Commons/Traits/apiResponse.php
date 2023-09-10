@@ -1,7 +1,10 @@
 <?php
     namespace App\Commons\Traits;
 
+    use Illuminate\Contracts\Pagination\LengthAwarePaginator;
     use Illuminate\Http\JsonResponse;
+    use Illuminate\Http\Resources\Json\ResourceCollection;
+    use Illuminate\Support\Arr;
 
     trait apiResponse
         {
@@ -16,11 +19,19 @@
 
             public function apiSuccess($data = null, $message = null, $statusCode = 200): JsonResponse
             {
-                return response()->json([
-                    'code' => $statusCode,
-                    'data' => $data,
+                $items = [
                     'message' => $message,
-                ], $statusCode);
+                    'data' => $data,
+                ];
+
+                if ($data instanceof ResourceCollection && $data->resource instanceof LengthAwarePaginator) {
+                    $items = Arr::collapse([
+                        $items,
+                        json_decode($data->toResponse(request())->content(), true),
+                    ]);
+                }
+
+                return response()->json($items, $statusCode);
             }
 
             public function apiError($errors, $message = null, $statusCode = null): JsonResponse

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('workshop_expense_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('workshop_expenses_id')
-                ->constrained('workshop_expenses')
+            $table->foreignId('workshop_expense_id')
+                ->constrained('workshop_expense')
                 ->onDelete('cascade')
-                ->name('workshop_expenses_id_foreign');
-            $table->foreignId('workshop_expenses_lists_id')
-                ->constrained('workshop_expenses_lists')
+                ->name('workshop_expense_id_foreign');
+            $table->foreignId('workshop_expense_lists_id')
+                ->constrained('workshop_expense_lists')
                 ->onDelete('cascade')
-                ->name('workshop_expenses_lists_id_foreign');
+                ->name('workshop_expense_lists_id_foreign');
             $table->integer('amount')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();

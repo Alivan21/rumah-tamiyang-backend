@@ -18,9 +18,9 @@ class WorkshopSparepartRevenueService
         return $this->workshopSparepartRevenueRepository->paginate($page, $perPage, $with);
     }
 
-    public function getWorkshopSparepartRevenueByWorkshopId($id)
+    public function getWorkshopSparepartRevenueByWorkshopId($id, array $with = [])
     {
-        return $this->workshopSparepartRevenueRepository->find($id);
+        return $this->workshopSparepartRevenueRepository->find($id, $with);
     }
 
     public function createWorkshopSparepartRevenue(array $data)
