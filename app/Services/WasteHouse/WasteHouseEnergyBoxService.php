@@ -18,6 +18,11 @@ class WasteHouseEnergyBoxService
         return $this->wasteHouseEnergyBoxRepository->paginate($page, $perPage, $with);
     }
 
+    public function findWasteHouseEnergyBox(int $id, array $with = [])
+    {
+        return $this->wasteHouseEnergyBoxRepository->find($id, $with);
+    }
+
     public function createWasteHouseEnergyBox(array $data)
     {
         $data['user_id'] = auth()->user()->id;

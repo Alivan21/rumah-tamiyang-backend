@@ -6,6 +6,7 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WasteHouse\CreateWasteHouseOilWasteRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseOilWasteRequest;
+use App\Http\Resources\WasteHouse\WasteOilCollection;
 use App\Services\WasteHouse\WasteHouseWasteOilService;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,13 @@ class WasteHouseWasteOilController extends Controller
     public function index(Request $request)
     {
         $wasteHouseWasteOil = $this->wasteHouseWasteOilService->paginate($request->page, $request->perPage);
+
+        return $this->apiSuccess(new WasteOilCollection($wasteHouseWasteOil), 'success');
+    }
+
+    public function show($id)
+    {
+        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->findWasteHouseWasteOil($id);
 
         return $this->apiSuccess($wasteHouseWasteOil, 'success');
     }

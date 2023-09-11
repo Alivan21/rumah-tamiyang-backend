@@ -148,6 +148,7 @@ use App\Commons\Enums\RoleEnum;
              */
             Route::prefix('oil-waste')->group(function () {
                 Route::get('/', [WasteHouseWasteOilController::class, 'index']);
+                Route::get('/{id}', [WasteHouseWasteOilController::class, 'show']);
                 Route::post('/', [WasteHouseWasteOilController::class, 'store']);
                 Route::put('/{id}', [WasteHouseWasteOilController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseWasteOilController::class, 'destroy']);
@@ -158,6 +159,7 @@ use App\Commons\Enums\RoleEnum;
              */
             Route::prefix('production')->group(function (){
                 Route::get('/', [WasteHouseProductionController::class, 'index']);
+                Route::get('/{id}', [WasteHouseProductionController::class, 'show']);
                 Route::post('/', [WasteHouseProductionController::class, 'store']);
                 Route::put('/{id}', [WasteHouseProductionController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseProductionController::class, 'destroy']);
@@ -168,6 +170,7 @@ use App\Commons\Enums\RoleEnum;
              */
             Route::prefix('income')->group(function (){
                 Route::get('/', [WasteHouseIncomeController::class, 'index']);
+                Route::get('/{id}', [WasteHouseIncomeController::class, 'show']);
                 Route::post('/', [WasteHouseIncomeController::class, 'store']);
                 Route::put('/{id}', [WasteHouseIncomeController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseIncomeController::class, 'destroy']);
@@ -178,6 +181,7 @@ use App\Commons\Enums\RoleEnum;
              */
             Route::prefix('energy-box')->group(function () {
                 Route::get('/', [WasteHouseEnergyBoxController::class, 'index']);
+                Route::get('/{id}', [WasteHouseEnergyBoxController::class, 'show']);
                 Route::post('/', [WasteHouseEnergyBoxController::class, 'store']);
                 Route::put('/{id}', [WasteHouseEnergyBoxController::class, 'update']);
                 Route::delete('/{id}', [WasteHouseEnergyBoxController::class, 'destroy']);

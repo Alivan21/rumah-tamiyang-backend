@@ -31,6 +31,13 @@ class WasteHouseEnergyBoxController extends Controller
         return $this->apiSuccess($wasteHouseEnergyBoxes, 'success');
     }
 
+    public function show($id)
+    {
+        $wasteHouseEnergyBox = $this->wasteHouseEnergyBoxService->findWasteHouseEnergyBox($id);
+
+        return $this->apiSuccess($wasteHouseEnergyBox, 'success');
+    }
+
     public function store(CreateWasteHouseEnergyBoxRequest $request)
     {
         $wasteHouseEnergyBox = $this->wasteHouseEnergyBoxService->createWasteHouseEnergyBox($request->validated());

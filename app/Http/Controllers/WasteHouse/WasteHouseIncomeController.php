@@ -27,6 +27,13 @@ class WasteHouseIncomeController extends Controller
         return $this->apiSuccess($wasteHouseIncomes, 'success');
     }
 
+    public function show($id)
+    {
+        $wasteHouseIncome = $this->wasteHouseIncomeService->findWasteHouseIncome($id);
+
+        return $this->apiSuccess($wasteHouseIncome, 'success');
+    }
+
     public function store(CreateWasteHouseIncomeRequest $request)
     {
         $wasteHouseIncome = $this->wasteHouseIncomeService->createWasteHouseIncome($request->validated());

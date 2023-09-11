@@ -18,6 +18,11 @@ class WasteHouseIncomeService
         return $this->wasteHouseIncomeRepository->paginate($page, $perPage, $with);
     }
 
+    public function findWasteHouseIncome(int $id, array $with = [])
+    {
+        return $this->wasteHouseIncomeRepository->find($id, $with);
+    }
+
     public function createWasteHouseIncome(array $data)
     {
         $data['user_id'] = auth()->user()->id;

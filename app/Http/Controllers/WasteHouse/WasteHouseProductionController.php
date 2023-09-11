@@ -27,6 +27,13 @@ class WasteHouseProductionController extends Controller
         return $this->apiSuccess($wasteHouseProductions, 'success');
     }
 
+    public function show($id)
+    {
+        $wasteHouseProduction = $this->wasteHouseProductionService->findWasteHouseProduction($id);
+
+        return $this->apiSuccess($wasteHouseProduction, 'success');
+    }
+
     public function store(CreateWasteHouseProductionRequest $request)
     {
         $wasteHouseProduction = $this->wasteHouseProductionService->createWasteHouseProduction($request->validated());

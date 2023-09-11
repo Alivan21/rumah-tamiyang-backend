@@ -35,4 +35,9 @@ class WasteHouseProductionRepository implements IWasteHouseProductionRepository
     {
         return $this->query->where('id', $id)->delete();
     }
+
+    public function find(int $id, array $with = [])
+    {
+        return $this->query->with($with)->findOrFail($id);
+    }
 }

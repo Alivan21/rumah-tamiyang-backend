@@ -19,6 +19,11 @@ class WasteHouseWasteOilService
         return $this->wasteHouseWasteOilRepository->paginate($page, $perPage, $with);
     }
 
+    public function findWasteHouseWasteOil(int $id, array $with = [])
+    {
+        return $this->wasteHouseWasteOilRepository->find($id, $with);
+    }
+
     public function createWasteHouseWasteOil(array $data)
     {
         $data['user_id'] = auth()->user()->id;
