@@ -6,6 +6,8 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WasteHouse\CreateWasteHouseEnergyBoxRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseEnergyBoxRequest;
+use App\Http\Resources\WasteHouse\WasteHouseEnergyBoxCollection;
+use App\Http\Resources\WasteHouse\WasteHouseEnergyBoxResource;
 use App\Services\WasteHouse\WasteHouseEnergyBoxService;
 use Illuminate\Http\Request;
 
@@ -28,14 +30,14 @@ class WasteHouseEnergyBoxController extends Controller
             $request->get('with', [])
         );
 
-        return $this->apiSuccess($wasteHouseEnergyBoxes, 'success');
+        return $this->apiSuccess(new WasteHouseEnergyBoxCollection($wasteHouseEnergyBoxes), 'success');
     }
 
     public function show($id)
     {
         $wasteHouseEnergyBox = $this->wasteHouseEnergyBoxService->findWasteHouseEnergyBox($id);
 
-        return $this->apiSuccess($wasteHouseEnergyBox, 'success');
+        return $this->apiSuccess(new WasteHouseEnergyBoxResource($wasteHouseEnergyBox), 'success');
     }
 
     public function store(CreateWasteHouseEnergyBoxRequest $request)

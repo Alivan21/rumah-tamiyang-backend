@@ -6,6 +6,8 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WasteHouse\CreateWasteHouseIncomeRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseIncomeRequest;
+use App\Http\Resources\WasteHouse\WasteHouseIncomeCollection;
+use App\Http\Resources\WasteHouse\WasteHouseIncomeResource;
 use App\Services\WasteHouse\WasteHouseIncomeService;
 use Illuminate\Http\Request;
 
@@ -24,14 +26,14 @@ class WasteHouseIncomeController extends Controller
     {
         $wasteHouseIncomes = $this->wasteHouseIncomeService->paginate($request->page, $request->perPage);
 
-        return $this->apiSuccess($wasteHouseIncomes, 'success');
+        return $this->apiSuccess(new WasteHouseIncomeCollection($wasteHouseIncomes), 'success');
     }
 
     public function show($id)
     {
         $wasteHouseIncome = $this->wasteHouseIncomeService->findWasteHouseIncome($id);
 
-        return $this->apiSuccess($wasteHouseIncome, 'success');
+        return $this->apiSuccess(new WasteHouseIncomeResource($wasteHouseIncome), 'success');
     }
 
     public function store(CreateWasteHouseIncomeRequest $request)

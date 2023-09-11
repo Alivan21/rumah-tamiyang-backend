@@ -14,6 +14,8 @@ class WasteHouseProductionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return $this->collection->map(function ($data){
+           return new WasteHouseProductionResource($data);
+        });
     }
 }

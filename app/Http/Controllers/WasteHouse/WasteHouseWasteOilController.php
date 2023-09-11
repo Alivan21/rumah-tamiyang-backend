@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\WasteHouse\CreateWasteHouseOilWasteRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseOilWasteRequest;
 use App\Http\Resources\WasteHouse\WasteOilCollection;
+use App\Http\Resources\WasteHouse\WasteOilResource;
 use App\Services\WasteHouse\WasteHouseWasteOilService;
 use Illuminate\Http\Request;
 
@@ -32,7 +33,7 @@ class WasteHouseWasteOilController extends Controller
     {
         $wasteHouseWasteOil = $this->wasteHouseWasteOilService->findWasteHouseWasteOil($id);
 
-        return $this->apiSuccess($wasteHouseWasteOil, 'success');
+        return $this->apiSuccess(new WasteOilResource($wasteHouseWasteOil), 'success');
     }
 
 

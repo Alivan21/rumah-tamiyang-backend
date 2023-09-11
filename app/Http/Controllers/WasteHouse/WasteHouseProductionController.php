@@ -6,6 +6,8 @@ use App\Commons\Traits\apiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\WasteHouse\CreateWasteHouseProductionRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseProductionRequest;
+use App\Http\Resources\WasteHouse\WasteHouseProductionCollection;
+use App\Http\Resources\WasteHouse\WasteHouseProductionResource;
 use App\Services\WasteHouse\WasteHouseProductionService;
 use Illuminate\Http\Request;
 
@@ -24,14 +26,14 @@ class WasteHouseProductionController extends Controller
     {
         $wasteHouseProductions = $this->wasteHouseProductionService->paginate($request->page, $request->perPage);
 
-        return $this->apiSuccess($wasteHouseProductions, 'success');
+        return $this->apiSuccess(new WasteHouseProductionCollection($wasteHouseProductions), 'success');
     }
 
     public function show($id)
     {
         $wasteHouseProduction = $this->wasteHouseProductionService->findWasteHouseProduction($id);
 
-        return $this->apiSuccess($wasteHouseProduction, 'success');
+        return $this->apiSuccess(new WasteHouseProductionResource($wasteHouseProduction), 'success');
     }
 
     public function store(CreateWasteHouseProductionRequest $request)

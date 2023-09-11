@@ -2,8 +2,12 @@
 
 namespace App\Http\Resources\WasteHouse;
 
+use App\Models\WasteHouse\WasteHouseIncome;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @property WasteHouseIncome $resource
+ */
 class WasteHouseIncomeResource extends JsonResource
 {
     /**
@@ -14,6 +18,11 @@ class WasteHouseIncomeResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->resource->id,
+            'date' => date('Y-m-d', strtotime($this->resource->date)),
+            'amount' => $this->resource->amount,
+            'description' => $this->resource->description ?? null,
+        ];
     }
 }
