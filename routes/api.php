@@ -17,6 +17,7 @@ use App\Http\Controllers\WasteHouse\WasteHouseEnergyBoxController;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Commons\Enums\RoleEnum;
+use Illuminate\Support\Arr;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +57,7 @@ use App\Commons\Enums\RoleEnum;
         /**
          * Cafe Revenue
          */
-        Route::group(['prefix' => 'cafe'], function (){
+        Route::group(['prefix' => 'cafe', 'middleware' => ['role:'. Arr::join([RoleEnum::ADMIN->value, RoleEnum::USER_CAFE->value], '|')]], function (){
             Route::prefix('revenue')->group(function () {
                 Route::get('/', [CafeRevenueController::class, 'index']);
                 Route::post('/', [CafeRevenueController::class, 'store']);
@@ -69,7 +70,7 @@ use App\Commons\Enums\RoleEnum;
         /**
          * Workshop | Bengkel
          */
-        Route::group(['prefix' => 'workshop'], function (){
+        Route::group(['prefix' => 'workshop', 'middleware' => ['role:'. Arr::join([RoleEnum::ADMIN->value, RoleEnum::USER_WORKSHOP->value], '|')]], function (){
 
             /**
              * Service Revenue | Pendapatan Jasa
@@ -141,7 +142,7 @@ use App\Commons\Enums\RoleEnum;
             });
         });
 
-        Route::group(['prefix' => 'waste-house'], function (){
+        Route::group(['prefix' => 'waste-house', 'middleware' => ['role:'. Arr::join([RoleEnum::ADMIN->value, RoleEnum::USER_WASTE_HOUSE->value], '|')]], function (){
 
             /**
              * Oil Waste | Limbah Oli Jelantah
