@@ -13,7 +13,7 @@ class WasteHouseEnergyBox extends Model
     protected $table = 'waste_house_energy_boxes';
 
     protected $fillable = [
-        'waste_house_production_lists_id',
+        'user_id',
         'date',
         'amount',
         'description',

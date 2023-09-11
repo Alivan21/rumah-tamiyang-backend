@@ -24,7 +24,6 @@ class CreateWasteHouseEnergyBoxRequest extends FormRequest
     public function rules()
     {
         return [
-            'waste_house_lists_id' => 'required|integer',
             'date' => 'required|date',
             'amount' => 'required|integer',
             'description' => 'nullable|string',
@@ -37,8 +36,6 @@ class CreateWasteHouseEnergyBoxRequest extends FormRequest
     public function messages()
     {
         return [
-            'waste_house_lists_id.required' => 'Waste House Lists Id is required!',
-            'waste_house_lists_id.integer' => 'Waste House Lists Id must be integer!',
             'user_id.required' => 'User Id is required!',
             'user_id.integer' => 'User Id must be integer!',
             'date.required' => 'Date is required!',
