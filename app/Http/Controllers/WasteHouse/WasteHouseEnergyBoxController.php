@@ -27,11 +27,7 @@ class WasteHouseEnergyBoxController extends Controller
     {
         $params = GeneralFilterParams::fromRequest($request);
 
-        $wasteHouseEnergyBoxes = $this->wasteHouseEnergyBoxService->paginate(
-            $request->get('page', 1),
-            $request->get('per_page', 10),
-            $request->get('with', [])
-        );
+        $wasteHouseEnergyBoxes = $this->wasteHouseEnergyBoxService->paginate($params);
 
         return $this->apiSuccess(new WasteHouseEnergyBoxCollection($wasteHouseEnergyBoxes), 'success');
     }
