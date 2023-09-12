@@ -81,16 +81,13 @@ class CafeRevenueService
      */
     private function getArr(array $data): array
     {
-        $revenue = (float)$data['purchase'] ?? 0;
-        $expense = (float)$data['sale'] ?? 0;
+        $purchase = (float)$data['purchase'] ?? 0;
+        $sale = (float)$data['sale'] ?? 0;
 
-        if ($revenue > 0) {
-            $profitPercentage = (($revenue - $expense) / $revenue) * 100;
-        } else {
-            $profitPercentage = 0; // Prevent division by zero
-        }
 
-        $data['profit'] = number_format($profitPercentage, 2);
+        $profit = $purchase - $sale;
+
+        $data['profit'] = $profit;
 
         return $data;
     }

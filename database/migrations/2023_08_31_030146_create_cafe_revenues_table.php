@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date')->default(now());
             $table->double('purchase');
             $table->double('sale');
-            $table->unsignedDecimal('profit', 8, 2);
+            $table->double('profit');
             $table->timestamps();
             $table->softDeletes();
         });

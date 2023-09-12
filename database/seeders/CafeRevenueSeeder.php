@@ -18,7 +18,7 @@ class CafeRevenueSeeder extends Seeder
         for ($i = 0; $i <  15; $i++) {
                 $purchase = rand(10000, 200000);
                 $sale = rand(1000, 13000);
-                $profit = (($purchase - $sale) / $purchase) * 100;
+                $profit = $purchase - $sale;
 
                 CafeRevenue::query()->create([
                 'purchase' => $purchase,
