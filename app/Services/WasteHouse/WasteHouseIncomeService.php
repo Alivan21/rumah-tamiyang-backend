@@ -3,6 +3,7 @@
 namespace App\Services\WasteHouse;
 
 use App\Contract\WasteHouse\IWasteHouseIncomeRepository;
+use App\Services\Params\GeneralFilterParams;
 
 class WasteHouseIncomeService
 {
@@ -13,9 +14,9 @@ class WasteHouseIncomeService
         $this->wasteHouseIncomeRepository = $wasteHouseIncomeRepository;
     }
 
-    public function paginate(int $page = 1, int $perPage = 10, array $with = [])
+    public function paginate(GeneralFilterParams $params, array $with = [])
     {
-        return $this->wasteHouseIncomeRepository->paginate($page, $perPage, $with);
+        return $this->wasteHouseIncomeRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function findWasteHouseIncome(int $id, array $with = [])

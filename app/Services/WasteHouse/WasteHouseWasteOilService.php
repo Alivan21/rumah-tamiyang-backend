@@ -3,6 +3,7 @@
 namespace App\Services\WasteHouse;
 
 use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
+use App\Services\Params\GeneralFilterParams;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class WasteHouseWasteOilService
@@ -14,9 +15,9 @@ class WasteHouseWasteOilService
         $this->wasteHouseWasteOilRepository = $wasteHouseWasteOilRepository;
     }
 
-    public function paginate(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
+    public function paginate(GeneralFilterParams $params, array $with = []): LengthAwarePaginator
     {
-        return $this->wasteHouseWasteOilRepository->paginate($page, $perPage, $with);
+        return $this->wasteHouseWasteOilRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function findWasteHouseWasteOil(int $id, array $with = [])

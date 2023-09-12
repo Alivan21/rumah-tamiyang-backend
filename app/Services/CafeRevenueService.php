@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Contract\ICafeRevenueRepository;
+use App\Services\Params\GeneralFilterParams;
 
 class CafeRevenueService
 {
@@ -19,9 +20,9 @@ class CafeRevenueService
      * @param array $with
      * @return mixed
      */
-    public function allCafeRevenue(int $page, int $perPage = 10, array $with = [])
+    public function allCafeRevenue(GeneralFilterParams $params, array $with = [])
     {
-        return $this->cafeRepository->paginate($page, $perPage, $with);
+        return $this->cafeRepository->paginate($params->page, $params->perPage, $with);
     }
 
     /**

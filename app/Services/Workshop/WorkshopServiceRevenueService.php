@@ -6,6 +6,7 @@ use App\Contract\Workshop\IWorkshopDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceDescriptionRepository;
 use App\Contract\Workshop\IWorkshopServiceRepository;
 use App\Contract\Workshop\IWorkshopServiceRevenueRepository;
+use App\Services\Params\GeneralFilterParams;
 use Illuminate\Http\Client\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
@@ -30,9 +31,9 @@ class WorkshopServiceRevenueService
         $this->workshopServiceDescriptionRepository = $workshopServiceDescriptionRepository;
     }
 
-    public function getAllWorkshopServiceRevenue($request, array $with = []): LengthAwarePaginator
+    public function getAllWorkshopServiceRevenue(GeneralFilterParams $params, array $with = []): LengthAwarePaginator
     {
-        return $this->workshopServiceRevenueRepository->paginate($request->page, $request->perPage, $with);
+        return $this->workshopServiceRevenueRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function getWorkshopServiceRevenueByWorkshopId($workshopId, $with = [])

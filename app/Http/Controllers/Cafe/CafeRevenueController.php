@@ -8,6 +8,7 @@ use App\Http\Requests\Cafe\CreateCafeRevenueRequest;
 use App\Http\Requests\Cafe\UpdateCafeRevenueRequest;
 use App\Http\Resources\Cafe\CafeRevenueResource;
 use App\Services\CafeRevenueService;
+use App\Services\Params\GeneralFilterParams;
 use Illuminate\Http\Request;
 
 class CafeRevenueController extends Controller
@@ -23,7 +24,9 @@ class CafeRevenueController extends Controller
 
     public function index(Request $request)
     {
-        $cafeRevenues = $this->cafeRevenueService->allCafeRevenue($request->page, $request->perPage);
+        $params = GeneralFilterParams::fromRequest($request);
+
+        $cafeRevenues = $this->cafeRevenueService->allCafeRevenue($params);
 
         return $this->apiSuccess(CafeRevenueResource::collection($cafeRevenues), 'success');
     }

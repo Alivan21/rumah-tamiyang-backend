@@ -3,6 +3,7 @@
 namespace App\Services\WasteHouse;
 
 use App\Contract\WasteHouse\IWasteHouseEnergyBoxRepository;
+use App\Services\Params\GeneralFilterParams;
 
 class WasteHouseEnergyBoxService
 {
@@ -13,9 +14,9 @@ class WasteHouseEnergyBoxService
         $this->wasteHouseEnergyBoxRepository = $wasteHouseEnergyBoxRepository;
     }
 
-    public function paginate(int $page = 1, int $perPage = 10, array $with = [])
+    public function paginate(GeneralFilterParams $params, array $with = [])
     {
-        return $this->wasteHouseEnergyBoxRepository->paginate($page, $perPage, $with);
+        return $this->wasteHouseEnergyBoxRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function findWasteHouseEnergyBox(int $id, array $with = [])

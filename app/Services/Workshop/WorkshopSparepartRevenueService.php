@@ -3,6 +3,7 @@
 namespace App\Services\Workshop;
 use App\Contract\Workshop\IWorkshopSparepartDescriptionRepository;
 use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
+use App\Services\Params\GeneralFilterParams;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
@@ -21,9 +22,9 @@ class WorkshopSparepartRevenueService
 
     }
 
-    public function getAllWorkshopSparepartRevenue(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
+    public function getAllWorkshopSparepartRevenue(GeneralFilterParams $params, array $with = []): LengthAwarePaginator
     {
-        return $this->workshopSparepartRevenueRepository->paginate($page, $perPage, $with);
+        return $this->workshopSparepartRevenueRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function getWorkshopSparepartRevenueByWorkshopId($id, array $with = [])

@@ -8,6 +8,7 @@ use App\Http\Requests\WasteHouse\CreateWasteHouseProductionRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseProductionRequest;
 use App\Http\Resources\WasteHouse\WasteHouseProductionCollection;
 use App\Http\Resources\WasteHouse\WasteHouseProductionResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\WasteHouse\WasteHouseProductionService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class WasteHouseProductionController extends Controller
 
     public function index(Request $request)
     {
-        $wasteHouseProductions = $this->wasteHouseProductionService->paginate($request->page, $request->perPage);
+        $params = GeneralFilterParams::fromRequest($request);
+        $wasteHouseProductions = $this->wasteHouseProductionService->paginate($params);
 
         return $this->apiSuccess(new WasteHouseProductionCollection($wasteHouseProductions), 'success');
     }

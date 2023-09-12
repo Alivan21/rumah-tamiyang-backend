@@ -8,6 +8,7 @@ use App\Http\Requests\WasteHouse\CreateWasteHouseOilWasteRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseOilWasteRequest;
 use App\Http\Resources\WasteHouse\WasteOilCollection;
 use App\Http\Resources\WasteHouse\WasteOilResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\WasteHouse\WasteHouseWasteOilService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class WasteHouseWasteOilController extends Controller
 
     public function index(Request $request)
     {
-        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->paginate($request->page, $request->perPage);
+        $params = GeneralFilterParams::fromRequest($request);
+
+        $wasteHouseWasteOil = $this->wasteHouseWasteOilService->paginate($params);
 
         return $this->apiSuccess(new WasteOilCollection($wasteHouseWasteOil), 'success');
     }

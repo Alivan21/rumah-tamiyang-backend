@@ -8,6 +8,7 @@ use App\Http\Requests\Workshop\CreateWorkshopServiceRevenueRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopServiceRevenueRequest;
 use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueCollection;
 use App\Http\Resources\Workshop\WorkshopService\WorkshopServiceRevenueResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\Workshop\WorkshopServiceRevenueService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class WorkshopServiceRevenueController extends Controller
 
     public function index(Request $request)
     {
-        $workshopServiceRevenues = $this->workshopServiceRevenueService->getAllWorkshopServiceRevenue($request, ['users']);
+        $params = GeneralFilterParams::fromRequest($request);
+
+        $workshopServiceRevenues = $this->workshopServiceRevenueService->getAllWorkshopServiceRevenue($params, ['users']);
 
         return $this->apiSuccess(new WorkshopServiceRevenueCollection($workshopServiceRevenues), 'success');
     }

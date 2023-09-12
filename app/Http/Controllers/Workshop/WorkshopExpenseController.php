@@ -8,6 +8,7 @@ use App\Http\Requests\Workshop\CreateWorkshopExpenseRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopExpenseRequest;
 use App\Http\Resources\Workshop\WorkshopExpense\WorkshopExpenseCollection;
 use App\Http\Resources\Workshop\WorkshopExpense\WorkshopExpenseResource;
+use App\Services\Params\Workshop\WorkshopFilterParams;
 use App\Services\Workshop\WorkshopExpenseService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,8 @@ class WorkshopExpenseController extends Controller
 
     public function index(Request $request)
     {
-        $workshopExpense = $this->workshopExpenseService->getAllWorkshopExpense($request->page, $request->perPage);
+        $params = WorkshopFilterParams::fromRequest($request);
+        $workshopExpense = $this->workshopExpenseService->getAllWorkshopExpense($params);
 
         return $this->apiSuccess(new WorkshopExpenseCollection($workshopExpense), 'success');
     }

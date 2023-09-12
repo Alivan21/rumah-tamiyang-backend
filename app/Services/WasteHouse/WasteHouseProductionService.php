@@ -3,6 +3,7 @@
 namespace App\Services\WasteHouse;
 
 use App\Contract\WasteHouse\IWasteHouseProductionRepository;
+use App\Services\Params\GeneralFilterParams;
 
 class WasteHouseProductionService
 {
@@ -13,9 +14,9 @@ class WasteHouseProductionService
         $this->wasteHouseProductionRepository = $wasteHouseProductionRepository;
     }
 
-    public function paginate(int $page, int $perPage = 10, array $with = [])
+    public function paginate(GeneralFilterParams $params, array $with = [])
     {
-        return $this->wasteHouseProductionRepository->paginate($page, $perPage, $with);
+        return $this->wasteHouseProductionRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function findWasteHouseProduction(int $id, array $with = [])

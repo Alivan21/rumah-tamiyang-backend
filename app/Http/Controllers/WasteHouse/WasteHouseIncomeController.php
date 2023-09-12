@@ -8,6 +8,7 @@ use App\Http\Requests\WasteHouse\CreateWasteHouseIncomeRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseIncomeRequest;
 use App\Http\Resources\WasteHouse\WasteHouseIncomeCollection;
 use App\Http\Resources\WasteHouse\WasteHouseIncomeResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\WasteHouse\WasteHouseIncomeService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class WasteHouseIncomeController extends Controller
 
     public function index(Request $request)
     {
-        $wasteHouseIncomes = $this->wasteHouseIncomeService->paginate($request->page, $request->perPage);
+        $params = GeneralFilterParams::fromRequest($request);
+
+        $wasteHouseIncomes = $this->wasteHouseIncomeService->paginate($params);
 
         return $this->apiSuccess(new WasteHouseIncomeCollection($wasteHouseIncomes), 'success');
     }

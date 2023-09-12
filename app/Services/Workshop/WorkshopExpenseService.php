@@ -4,6 +4,7 @@ namespace App\Services\Workshop;
 
 use App\Contract\Workshop\IWorkshopExpenseDescriptionRepository;
 use App\Contract\Workshop\IWorkshopExpenseRepository;
+use App\Services\Params\Workshop\WorkshopFilterParams;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 
@@ -26,9 +27,9 @@ class WorkshopExpenseService
         $this->workshopExpenseDescriptionRepository = $workshopExpenseDescriptionRepository;
     }
 
-    public function getAllWorkshopExpense(int $page, int $perPage = 10, array $with = []): LengthAwarePaginator
+    public function getAllWorkshopExpense(WorkshopFilterParams $params, array $with = []): LengthAwarePaginator
     {
-        return $this->workshopExpenseRepository->paginate($page, $perPage, $with);
+        return $this->workshopExpenseRepository->paginate($params->page, $params->perPage, $with);
     }
 
     public function getWorkshopExpenseById($workshopId, array $with = [])

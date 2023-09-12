@@ -8,6 +8,7 @@ use App\Http\Requests\WasteHouse\CreateWasteHouseEnergyBoxRequest;
 use App\Http\Requests\WasteHouse\UpdateWasteHouseEnergyBoxRequest;
 use App\Http\Resources\WasteHouse\WasteHouseEnergyBoxCollection;
 use App\Http\Resources\WasteHouse\WasteHouseEnergyBoxResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\WasteHouse\WasteHouseEnergyBoxService;
 use Illuminate\Http\Request;
 
@@ -24,6 +25,8 @@ class WasteHouseEnergyBoxController extends Controller
 
     public function index(Request $request)
     {
+        $params = GeneralFilterParams::fromRequest($request);
+
         $wasteHouseEnergyBoxes = $this->wasteHouseEnergyBoxService->paginate(
             $request->get('page', 1),
             $request->get('per_page', 10),

@@ -8,6 +8,7 @@ use App\Http\Requests\Workshop\CreateWorkshopSparepartRevenueRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopServiceDescriptionRequest;
 use App\Http\Resources\Workshop\WorkshopSparepart\WorkshopSparepartsRevenueCollection;
 use App\Http\Resources\Workshop\WorkshopSparepart\WorkshopSparepartsRevenueResource;
+use App\Services\Params\GeneralFilterParams;
 use App\Services\Workshop\WorkshopSparepartRevenueService;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class WorkshopSparepartRevenueController extends Controller
 
     public function index(Request $request)
     {
-        $workshopSparepartRevenues = $this->workshopSparepartRevenueService->getAllWorkshopSparepartRevenue($request->page, $request->perPage);
+        $params = GeneralFilterParams::fromRequest($request);
+
+        $workshopSparepartRevenues = $this->workshopSparepartRevenueService->getAllWorkshopSparepartRevenue($params);
 
         return $this->apiSuccess(new WorkshopSparepartsRevenueCollection($workshopSparepartRevenues), 'success');
     }
