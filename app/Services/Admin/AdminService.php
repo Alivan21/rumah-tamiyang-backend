@@ -2,8 +2,10 @@
 
 namespace App\Services\Admin;
 
+use App\Commons\Enums\RoleEnum;
 use App\Contract\Admin\IAdminRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\Permission\Models\Role;
 
 class AdminService
 {
@@ -28,7 +30,13 @@ class AdminService
     {
         $data['password'] = bcrypt($data['password']);
 
-        return $this->adminRepository->create($data);
+
+
+        $user =  $this->adminRepository->create($data);
+
+        $this->assignRole($user, $data['role_id']);
+
+        return $user->fresh();
     }
 
     public function updateUser(array $data, int $id)
@@ -44,5 +52,34 @@ class AdminService
     public function deleteUser(int $id)
     {
         return $this->adminRepository->delete($id);
+    }
+
+    private function assignRole($user, $role_id)
+    {
+        if ($role_id == 1)
+        {
+            $role_admin = Role::query()->where('name', RoleEnum::ADMIN->value)->first();
+            $user->assignRole($role_admin);
+        }
+
+        if ($role_id == 2)
+        {
+            $role_cafe = Role::query()->where('name', RoleEnum::USER_CAFE->value)->first();
+            $user->assignRole($role_cafe);
+        }
+
+        if ($role_id == 3)
+        {
+            $role_workshop = Role::query()->where('name', RoleEnum::USER_WORKSHOP->value)->first();
+            $user->assignRole($role_workshop);
+        }
+
+        if ($role_id == 4)
+        {
+            $role_waste_house = Role::query()->where('name', RoleEnum::USER_WASTE_HOUSE->value)->first();
+            $user->assignRole($role_waste_house);
+        }
+
+        return $user;
     }
 }

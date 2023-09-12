@@ -23,7 +23,7 @@ class CafeRevenue extends Model
     protected $fillable =[
         'purchase',
         'date',
-        'purchase',
+        'sale',
         'profit',
         'user_id'
     ];
