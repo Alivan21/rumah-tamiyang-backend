@@ -84,10 +84,9 @@ class CafeRevenueService
         $purchase = (float)$data['purchase'] ?? 0;
         $sale = (float)$data['sale'] ?? 0;
 
+        $income = $sale - $purchase;
 
-        $profit = $purchase - $sale;
-
-        $data['income'] = $profit;
+        $data['income'] = $income;
 
         return $data;
     }
