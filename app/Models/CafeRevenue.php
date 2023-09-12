@@ -9,8 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property int $id
  * @property int $user_id
- * @property double $revenue
- * @property double $expense
+ * @property double $purchase
+ * @property double $sale
  * @property float $profit
  * @property \DateTime|Carbon $date
  *
@@ -23,7 +23,7 @@ class CafeRevenue extends Model
     protected $fillable =[
         'purchase',
         'date',
-        'sale',
+        'purchase',
         'profit',
         'user_id'
     ];

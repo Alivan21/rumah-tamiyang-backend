@@ -35,7 +35,6 @@ use Illuminate\Support\Arr;
         Route::post('login', [AuthController::class, 'login'])->middleware('guest')->name('login');
         // Route::post('register', [AuthController::class, 'register'])->name('register');
         Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api')->name('logout');
-
     });
 
     Route::middleware(['auth:api'])->group(function () {
