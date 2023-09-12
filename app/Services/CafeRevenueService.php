@@ -87,7 +87,7 @@ class CafeRevenueService
 
         $profit = $purchase - $sale;
 
-        $data['profit'] = $profit;
+        $data['income'] = $profit;
 
         return $data;
     }

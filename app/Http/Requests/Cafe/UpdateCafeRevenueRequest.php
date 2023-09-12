@@ -24,8 +24,8 @@ class UpdateCafeRevenueRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'revenue' => 'nullable|numeric',
-            'expense' => 'nullable|numeric',
+            'purchase' => 'nullable|numeric',
+            'sale' => 'nullable|numeric',
             'date' => 'nullable|date'
         ];
     }
@@ -33,8 +33,8 @@ class UpdateCafeRevenueRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'revenue.numeric' => 'Revenue must be a number',
-            'expense.numeric' => 'Expense must be a number',
+            'purchase.numeric' => 'Revenue must be a number',
+            'sale.numeric' => 'Expense must be a number',
             'date.date' => 'Date must be a date'
         ];
     }

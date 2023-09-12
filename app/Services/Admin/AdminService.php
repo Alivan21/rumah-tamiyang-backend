@@ -46,6 +46,16 @@ class AdminService
             $data['password'] = bcrypt($data['password']);
         }
 
+        if (isset($data['role_id']))
+        {
+            $user = $this->adminRepository->find($id);
+            $user->removeRole(RoleEnum::ADMIN->value);
+            $user->removeRole(RoleEnum::USER_CAFE->value);
+            $user->removeRole(RoleEnum::USER_WORKSHOP->value);
+            $user->removeRole(RoleEnum::USER_WASTE_HOUSE->value);
+            $this->assignRole($user, $data['role_id']);
+        }
+
         return $this->adminRepository->update($data, $id);
     }
 
