@@ -19,7 +19,7 @@ return new class extends Migration
             $table->date('date')->default(now());
             $table->double('purchase');
             $table->double('sale');
-            $table->double('profit');
+            $table->double('income');
             $table->timestamps();
             $table->softDeletes();
         });

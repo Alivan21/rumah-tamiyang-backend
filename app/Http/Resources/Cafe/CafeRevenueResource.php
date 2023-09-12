@@ -24,7 +24,7 @@ class CafeRevenueResource extends JsonResource
             'user_id' => $this->resource->user_id,
             'purchase' => $this->resource->purchase,
             'sale' => $this->resource->sale,
-            'profit' => $this->resource->profit,
+            'income' => $this->resource->income,
         ];
     }
 }

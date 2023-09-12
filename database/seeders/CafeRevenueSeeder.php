@@ -18,12 +18,12 @@ class CafeRevenueSeeder extends Seeder
         for ($i = 0; $i <  15; $i++) {
                 $purchase = rand(10000, 200000);
                 $sale = rand(1000, 13000);
-                $profit = $purchase - $sale;
+                $income = $purchase - $sale;
 
                 CafeRevenue::query()->create([
                 'purchase' => $purchase,
                 'sale' => $sale,
-                'profit' => $profit,
+                'income' => $income,
                 'user_id' => 2,
                 'date' => now()->subDays(rand(1, 30))
             ]);

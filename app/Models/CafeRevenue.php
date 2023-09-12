@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property int $user_id
  * @property double $purchase
  * @property double $sale
- * @property float $profit
+ * @property double $income
  * @property \DateTime|Carbon $date
  *
  */
@@ -24,7 +24,7 @@ class CafeRevenue extends Model
         'purchase',
         'date',
         'sale',
-        'profit',
+        'income',
         'user_id'
     ];
 
