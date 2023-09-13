@@ -6,6 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * @property integer $id
+ * @property integer $user_id
+ * @property string $date
+ * @property integer $oil_collects
+ * @property integer $oil_out
+ */
 class WorkshopOilWaste extends Model
 {
     use HasFactory, SoftDeletes;

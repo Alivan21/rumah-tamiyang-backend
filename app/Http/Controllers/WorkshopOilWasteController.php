@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Commons\Traits\apiResponse;
 use App\Http\Requests\Workshop\CreateWorkshopOilWasteRequest;
 use App\Http\Requests\Workshop\UpdateWorkshopOilWasteRequest;
+use App\Http\Resources\Workshop\WorkshopOilWaste\WorkshopOilWasteCollection;
+use App\Http\Resources\Workshop\WorkshopOilWaste\WorkshopOilWasteResource;
 use App\Services\Workshop\WorkshopOilWasteService;
 use Illuminate\Http\Request;
 
@@ -23,14 +25,14 @@ class WorkshopOilWasteController extends Controller
     {
         $workshopOilWastes = $this->workshopOilWasteService->paginateWorkshopOilWaste($request->page, $request->perPage);
 
-        return $this->apiSuccess($workshopOilWastes, 'success');
+        return $this->apiSuccess(new WorkshopOilWasteCollection($workshopOilWastes), 'success');
     }
 
     public function show($id)
     {
         $workshopOilWaste = $this->workshopOilWasteService->findWorkshopOilWaste($id);
 
-        return $this->apiSuccess($workshopOilWaste, 'success');
+        return $this->apiSuccess(new WorkshopOilWasteResource($workshopOilWaste), 'success');
     }
 
     public function store(CreateWorkshopOilWasteRequest $request)
