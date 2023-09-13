@@ -26,7 +26,7 @@ class UpdateWorkshopOilWasteRequest extends FormRequest
         return [
             'date' => 'date',
             'oil_collects' => 'integer',
-            'oil_wastes' => 'integer',
+            'oil_out' => 'integer',
         ];
     }
 
