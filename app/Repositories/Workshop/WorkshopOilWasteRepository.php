@@ -29,4 +29,14 @@ class WorkshopOilWasteRepository implements IWorkshopOilWasteRepository
     {
         return $this->query->where('id', $id)->delete();
     }
+
+    public function paginate(int $page, int $perPage = 10, array $with = [])
+    {
+        return $this->query->with($with)->paginate($perPage, ['*'], 'page', $page);
+    }
+
+    public function find(int $id, array $with = [])
+    {
+        return $this->query->with($with)->find($id);
+    }
 }

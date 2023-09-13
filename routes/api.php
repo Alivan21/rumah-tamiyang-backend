@@ -135,6 +135,8 @@ use Illuminate\Support\Arr;
              * Oil Waste | Limbah Oli
              */
             Route::prefix('oil-waste')->group(function () {
+                Route::get('/', [WorkshopOilWasteController::class, 'index']);
+                Route::get('/{id}', [WorkshopOilWasteController::class, 'show']);
                 Route::post('/', [WorkshopOilWasteController::class, 'store']);
                 Route::put('/{id}', [WorkshopOilWasteController::class, 'update']);
                 Route::delete('/{id}', [WorkshopOilWasteController::class, 'destroy']);

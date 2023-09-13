@@ -15,20 +15,11 @@ class WorkshopOilWaste extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'oil collects',
+        'oil_collects',
         'oil_out',
     ];
 
     protected $dates = [
         'date',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(function ($query) {
-            $query->user_id = auth()->user()->id;
-        });
-    }
 }

@@ -15,6 +15,7 @@ use Database\Seeders\WasteHouse\WasteHouseProductionSeeder;
 use Database\Seeders\Workshop\WorkshopExpenseDescriptionSeeder;
 use Database\Seeders\Workshop\WorkshopExpenseListSeeder;
 use Database\Seeders\Workshop\WorkshopExpenseSeeder;
+use Database\Seeders\Workshop\WorkshopOilWasteSeeder;
 use Database\Seeders\Workshop\WorkshopServiceDescriptionSeeder;
 use Database\Seeders\Workshop\WorkshopServiceRevenueSeeder;
 use Database\Seeders\Workshop\WorkshopServiceSeeder;
@@ -51,6 +52,7 @@ class DatabaseSeeder extends Seeder
             WorkshopSparepartsDescriptionSeeder::class,
             WorkshopExpenseDescriptionSeeder::class,
             WorkshopServiceDescriptionSeeder::class,
+            WorkshopOilWasteSeeder::class,
 
             WasteHouseEnergyBoxSeeder::class,
             WasteHouseProductionSeeder::class,

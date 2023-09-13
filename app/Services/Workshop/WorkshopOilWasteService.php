@@ -13,6 +13,16 @@ class WorkshopOilWasteService
         $this->workshopOilWasteRepository = $workshopOilWasteRepository;
     }
 
+    public function paginateWorkshopOilWaste(int $page, int $perPage = 10, array $with = [])
+    {
+        return $this->workshopOilWasteRepository->paginate($page, $perPage, $with);
+    }
+
+    public function findWorkshopOilWaste(int $id, array $with = [])
+    {
+        return $this->workshopOilWasteRepository->find($id, $with);
+    }
+
     public function createWorkshopOilWaste(array $data)
     {
         return $this->workshopOilWasteRepository->create($data);

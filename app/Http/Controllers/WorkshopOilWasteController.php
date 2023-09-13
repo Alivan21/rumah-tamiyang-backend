@@ -19,6 +19,19 @@ class WorkshopOilWasteController extends Controller
         $this->workshopOilWasteService = $workshopOilWasteService;
     }
 
+    public function index(Request $request)
+    {
+        $workshopOilWastes = $this->workshopOilWasteService->paginateWorkshopOilWaste($request->page, $request->perPage);
+
+        return $this->apiSuccess($workshopOilWastes, 'success');
+    }
+
+    public function show($id)
+    {
+        $workshopOilWaste = $this->workshopOilWasteService->findWorkshopOilWaste($id);
+
+        return $this->apiSuccess($workshopOilWaste, 'success');
+    }
 
     public function store(CreateWorkshopOilWasteRequest $request)
     {
