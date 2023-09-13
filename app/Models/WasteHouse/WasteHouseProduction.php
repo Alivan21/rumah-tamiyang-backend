@@ -9,11 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @property integer $id
  * @property integer $user_id
- * @property integer $waste_house_lists_id
  * @property string $date
- * @property integer $amount
- * @property string $description
+ * @property integer $income
  * @property WasteHouseList $wasteHouseList
+ * @property WasteHouseProductionDetail $wasteHouseProductionDetail
  */
 class WasteHouseProduction extends Model
 {
@@ -23,10 +22,8 @@ class WasteHouseProduction extends Model
 
     protected $fillable = [
         'user_id',
-        'waste_house_lists_id',
         'date',
-        'amount',
-        'description',
+        'income',
     ];
 
     protected $dates = [
@@ -41,5 +38,10 @@ class WasteHouseProduction extends Model
     public function wasteHouseList()
     {
         return $this->belongsTo(WasteHouseList::class);
+    }
+
+    public function wasteHouseProductionDetail()
+    {
+        return $this->hasMany(WasteHouseProductionDetail::class);
     }
 }

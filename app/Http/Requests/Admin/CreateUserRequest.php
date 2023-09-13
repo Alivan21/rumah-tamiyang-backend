@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateUserRequest extends FormRequest
 {
@@ -25,7 +26,14 @@ class CreateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|unique:users,email|email|max:255',
+            'email' => [
+                'required',
+                'email',
+                'max:255',
+                Rule::unique('users', 'email')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+                ],
             'identifier' => 'required|unique:users,identifier|string|max:255',
             'password' => 'required|string|min:8|max:255',
             'role_id' => 'required|integer|exists:roles,id',

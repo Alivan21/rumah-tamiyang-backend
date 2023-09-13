@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @property int $id
- * @property int waste_house_list_id
  * @property string date
- * @property int amount
- * @property string description
+ * @property int income
  * @property WasteHouseList wasteHouseList
+ * @property WasteHouseIncomeDetail wasteHouseIncomeDetail
  */
 class WasteHouseIncome extends Model
 {
@@ -25,10 +24,19 @@ class WasteHouseIncome extends Model
     ];
 
     protected $fillable = [
-        'waste_house_list_id',
+        'user_id',
         'date',
         'amount',
-        'description',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    public function wasteHouseList()
+    {
+        return $this->belongsTo(WasteHouseList::class);
+    }
 
 }

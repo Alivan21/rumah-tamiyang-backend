@@ -21,8 +21,7 @@ class WasteHouseIncomeResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'date' => date('Y-m-d', strtotime($this->resource->date)),
-            'amount' => $this->resource->amount,
-            'description' => $this->resource->description ?? null,
+            'income' => $this->resource->income,
         ];
     }
 }

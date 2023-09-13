@@ -16,17 +16,10 @@ class WasteHouseIncomeSeeder extends Seeder
     public function run()
     {
         for ($i=0; $i < 15; $i++) {
-            $wasteHouseLists = rand(1,4);
-            $description = '';
-            if($wasteHouseLists == 4){
-                $description = 'Waste House';
-            }
             WasteHouseIncome::query()->create([
                 'user_id' =>  4,
-                'waste_house_lists_id' => $wasteHouseLists,
                 'date' => now()->subDays($i),
-                'amount' => rand(50, 100),
-                'description' => $description,
+                'income' => rand(50, 100),
             ]);
         }
     }
