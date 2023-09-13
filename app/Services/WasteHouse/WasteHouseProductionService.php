@@ -2,15 +2,22 @@
 
 namespace App\Services\WasteHouse;
 
+use App\Contract\WasteHouse\IWasteHouseProductionDetailRepository;
 use App\Contract\WasteHouse\IWasteHouseProductionRepository;
 use App\Services\Params\GeneralFilterParams;
+use Illuminate\Support\Facades\DB;
 
 class WasteHouseProductionService
 {
     private IWasteHouseProductionRepository $wasteHouseProductionRepository;
+    private IWasteHouseProductionDetailRepository $wasteHouseProductionDetailRepository;
 
-    public function __construct(IWasteHouseProductionRepository $wasteHouseProductionRepository)
+    public function __construct(
+        IWasteHouseProductionRepository $wasteHouseProductionRepository,
+        IWasteHouseProductionDetailRepository $wasteHouseProductionDetailRepository
+    )
     {
+        $this->wasteHouseProductionDetailRepository = $wasteHouseProductionDetailRepository;
         $this->wasteHouseProductionRepository = $wasteHouseProductionRepository;
     }
 
@@ -26,9 +33,37 @@ class WasteHouseProductionService
 
     public function createWasteHouseProduction(array $data)
     {
-        $data['user_id'] = auth()->user()->id;
+        try {
+            DB::beginTransaction();
 
-        return $this->wasteHouseProductionRepository->create($data);
+            $data['user_id'] = auth()->user()->id;
+
+            $dataProduction = $this->wasteHouseProductionRepository->create($data);
+
+            $dataProductionDetail = [];
+
+            foreach ($data['data'] as $value)
+            {
+                $dataProductionDetail[] = [
+                    'waste_house_production_id' => $dataProduction->id,
+                    'waste_house_lists_id' => $value['waste_house_lists_id'],
+                    'description' => $value['description'] ?? null,
+                    'amount' => $value['amount'] ?? 0
+                ];
+            }
+
+            $this->wasteHouseProductionDetailRepository->create($dataProductionDetail);
+
+            DB::commit();
+
+            return $dataProduction->fresh();
+
+        }catch (\Exception $e) {
+            DB::rollBack();
+            throw new \Exception($e->getMessage());
+        }
+
+//        return $this->wasteHouseProductionRepository->create($data);
     }
 
     public function updateWasteHouseProduction(array $data, int $id)

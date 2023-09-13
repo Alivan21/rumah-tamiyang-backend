@@ -11,6 +11,7 @@ use App\Http\Resources\WasteHouse\WasteHouseProductionResource;
 use App\Services\Params\GeneralFilterParams;
 use App\Services\WasteHouse\WasteHouseProductionService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WasteHouseProductionController extends Controller
 {

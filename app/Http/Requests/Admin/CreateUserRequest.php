@@ -34,7 +34,14 @@ class CreateUserRequest extends FormRequest
                     $query->whereNull('deleted_at');
                 }),
                 ],
-            'identifier' => 'required|unique:users,identifier|string|max:255',
+            'identifier' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('users', 'identifier')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+            ],
             'password' => 'required|string|min:8|max:255',
             'role_id' => 'required|integer|exists:roles,id',
             'phone' => 'string|max:255',

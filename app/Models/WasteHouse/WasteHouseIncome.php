@@ -26,7 +26,7 @@ class WasteHouseIncome extends Model
     protected $fillable = [
         'user_id',
         'date',
-        'amount',
+        'income',
     ];
 
     public function user()

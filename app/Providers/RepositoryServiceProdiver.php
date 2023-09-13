@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Contract\Admin\IAdminRepository;
 use App\Contract\ICafeRevenueRepository;
 use App\Contract\WasteHouse\IWasteHouseEnergyBoxRepository;
+use App\Contract\WasteHouse\IWasteHouseIncomeDetailRepository;
 use App\Contract\WasteHouse\IWasteHouseIncomeRepository;
+use App\Contract\WasteHouse\IWasteHouseProductionDetailRepository;
 use App\Contract\WasteHouse\IWasteHouseProductionRepository;
 use App\Contract\WasteHouse\IWasteHouseWasteOilRepository;
 use App\Contract\Workshop\IWorkshopDescriptionRepository;
@@ -20,7 +22,9 @@ use App\Contract\Workshop\IWorkshopSparepartRevenueRepository;
 use App\Repositories\Admin\AdminRepository;
 use App\Repositories\CafeRevenue\CafeRevenueRepository;
 use App\Repositories\WasteHouse\WasteHouseEnergyBoxRepository;
+use App\Repositories\WasteHouse\WasteHouseIncomeDetailRepository;
 use App\Repositories\WasteHouse\WasteHouseIncomeRepository;
+use App\Repositories\WasteHouse\WasteHouseProductionDetailRepository;
 use App\Repositories\WasteHouse\WasteHouseProductionRepository;
 use App\Repositories\WasteHouse\WasteHouseWasteOilRepository;
 use App\Repositories\Workshop\WorkshopExpenseDescriptionRepository;
@@ -198,6 +202,22 @@ class RepositoryServiceProdiver extends ServiceProvider
         $this->app->bind(
             IWasteHouseEnergyBoxRepository::class,
             WasteHouseEnergyBoxRepository::class
+        );
+
+        /**
+         * WasteHouse Income Detail
+         */
+        $this->app->bind(
+            IWasteHouseIncomeDetailRepository::class,
+            WasteHouseIncomeDetailRepository::class
+        );
+
+        /**
+         * WasteHouse Production Detail
+         */
+        $this->app->bind(
+            IWasteHouseProductionDetailRepository::class,
+            WasteHouseProductionDetailRepository::class
         );
     }
 

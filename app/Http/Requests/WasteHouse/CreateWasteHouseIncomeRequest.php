@@ -19,10 +19,12 @@ class CreateWasteHouseIncomeRequest extends FormRequest
     public function rules()
     {
         return [
-            'waste_house_lists_id' => 'required|integer',
+            'income' => 'required|numeric',
             'date' => 'required|date',
-            'amount' => 'required|integer',
-            'description' => 'nullable|string',
+            'data' => 'required|array',
+            'data.*.waste_house_lists_id' => 'required|integer',
+            'data.*.amount' => 'required|integer',
+            'data.*.description' => 'nullable|string',
         ];
     }
 
