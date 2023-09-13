@@ -25,6 +25,8 @@ class WorkshopOilWasteService
 
     public function createWorkshopOilWaste(array $data)
     {
+        $data['user_id'] = auth()->user()->id;
+
         return $this->workshopOilWasteRepository->create($data);
     }
 

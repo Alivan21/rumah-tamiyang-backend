@@ -24,10 +24,9 @@ class CreateWorkshopOilWasteRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'required|exists:users,id',
             'date' => 'required|date',
             'oil_collects' => 'required|integer',
-            'oil_wastes' => 'required|integer',
+            'oil_out' => 'required|integer',
         ];
     }
 

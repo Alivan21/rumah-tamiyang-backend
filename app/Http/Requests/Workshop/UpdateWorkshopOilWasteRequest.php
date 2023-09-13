@@ -24,7 +24,6 @@ class UpdateWorkshopOilWasteRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'exists:users,id',
             'date' => 'date',
             'oil_collects' => 'integer',
             'oil_wastes' => 'integer',
